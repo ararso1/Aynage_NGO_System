@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="admin-panel">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="logo">Admin Panel</div>
+      <nav>
+        <ul>
+          <li><a href="#dashboard" class="active">Dashboard</a></li>
+          <li><a href="#vacancy">Vacancy</a></li>
+          <li><a href="#blogs">Blogs</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Navbar -->
+      <div class="navbar">
+        <div class="search-bar">
+            <input type="text" placeholder="Search by title..." />
+          </div>
+        <div class="profile">
+          <img src="https://via.placeholder.com/40" alt="Profile Avatar">
+        </div>
+      </div>
+
+      <!-- Dashboard Section -->
+      <section id="dashboard" class="section active">
+        <h2>Dashboard</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Total Vacancies</h3>
+            <p>25</p>
+          </div>
+          <div class="card">
+            <h3>Total Blogs</h3>
+            <p>12</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Vacancy Section -->
+      <section id="vacancy" class="section">
+        <h2>Vacancy</h2>
+        <div class="table-header">
+            <button class="new-vacancy" onclick="openModal()">New Vacancy</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Title</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Software Engineer</td>
+              <td>Open</td>
+              <td>
+                <button class="edit">Edit</button>
+                <button class="delete">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Data Analyst</td>
+              <td>Closed</td>
+              <td>
+                <button class="edit">Edit</button>
+                <button class="delete">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Blogs Section -->
+      <section id="blogs" class="section">
+        <h2>Blogs</h2>
+        <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Software Engineer</td>
+                <td>Open</td>
+                <td>
+                  <button class="edit">Edit</button>
+                  <button class="delete">Delete</button>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Data Analyst</td>
+                <td>Closed</td>
+                <td>
+                  <button class="edit">Edit</button>
+                  <button class="delete">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    // Simple navigation logic
+    document.querySelectorAll('.sidebar a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelectorAll('.section').forEach(section => {
+          section.classList.remove('active');
+        });
+        document.querySelector(link.getAttribute('href')).classList.add('active');
+      });
+    });
+
+    
+  // Open Modal
+  function openModal() {
+    document.getElementById('modal').style.display = 'flex';
+  }
+
+  // Close Modal
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+  }
+
+  // Handle Form Submission
+  document.getElementById('vacancy-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Get form data
+    const category = document.getElementById('category').value;
+    const title = document.getElementById('title').value;
+    const description = document.getElementById('description').value;
+    const image = document.getElementById('image').files[0];
+
+    // Log form data (you can replace this with an API call or other logic)
+    console.log('Category:', category);
+    console.log('Title:', title);
+    console.log('Description:', description);
+    console.log('Image:', image);
+
+    // Close modal after submission
+    closeModal();
+
+    // Reset form
+    document.getElementById('vacancy-form').reset();
+  });
+
+  // Close modal when clicking outside the modal content
+  window.onclick = function (event) {
+    const modal = document.getElementById('modal');
+    if (event.target === modal) {
+      closeModal();
+    }
+  };
+
+  </script>
+</body>
+</html>

@@ -12,4 +12,11 @@ urlpatterns = [
     path('vacancy', views.vacancy, name='vacancy'),
     path('signin', views.signin, name='signin'),
     path('donate', views.donate, name='donate'),
+
+    #Admin panel
+    # path('category_mgt',views.category_mgt,name='category-mgt'),
+    # path('manage_category',views.manage_category,name='manage-category'),
+    # path('categories',views.categories,name='category-page'),
+    path('admin_panel',views.admin_panel,name='admin-page'),
+
 ]
