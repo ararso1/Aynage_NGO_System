@@ -35,35 +35,36 @@ def donate(request):
 def admin_panel(request):
     return render(request, 'admin_page/index.html')
 
-#Category
-# category_list = Category.objects.exclude(status = 2).all()
-# context = {
-#     'page_title' : 'Simple Blog Site',
-#     'category_list' : category_list,
-#     'category_list_limited' : category_list[:3]
-# }
+# Category
+category_list = Category.objects.exclude(status = 2).all()
+context = {
+    'page_title' : 'Simple Blog Site',
+    'category_list' : category_list,
+    'category_list_limited' : category_list[:3]
+}
 
-# def category_mgt(request):
-#     categories = Category.objects.all()
-#     context['page_title'] = "Category Management"
-#     context['categories'] = categories
-#     return render(request, 'admin/category_mgt.html', context)
+def category_mgt(request):
+    categories = Category.objects.all()
+    context['page_title'] = "Category Management"
+    context['categories'] = categories
+    return render(request, 'admin/category_mgt.html', context)
 
-# def manage_category(request,pk=None):
-#     # category = Category.objects.all()
-#     if pk == None:
-#         category = {}
-#     elif pk > 0:
-#         category = Category.objects.filter(id=pk).first()
-#     else:
-#         category = {}
-#     context['page_title'] = "Manage Category"
-#     context['category'] = category
+def manage_category(request,pk=None):
+    # category = Category.objects.all()
+    if pk == None:
+        category = {}
+    elif pk > 0:
+        category = Category.objects.filter(id=pk).first()
+    else:
+        category = {}
+    context['page_title'] = "Manage Category"
+    context['category'] = category
 
-#     return render(request, 'admin/manage_category.html',context)
+    return render(request, 'admin/manage_category.html',context)
 
-# def categories(request):
-#     categories = Category.objects.filter(status = 1).all()
-#     context['page_title'] = "Category Management"
-#     context['categories'] = categories
-#     return render(request, 'admin/categories.html',context)
+def categories(request):
+    categories = Category.objects.filter(status = 1).all()
+    context['page_title'] = "Category Management"
+    context['categories'] = categories
+    return render(request, 'admin/categories.html',context)
+
