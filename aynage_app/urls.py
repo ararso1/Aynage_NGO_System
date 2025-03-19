@@ -12,7 +12,7 @@ urlpatterns = [
     path('vacancy', views.vacancy, name='vacancy'),
     path('signin', views.signin, name='signin'),
     path('donate', views.donate, name='donate'),
-
+    path('vacancy_details', views.vacancy_details, name='vacancy_details'),
     #Admin panel
     # path('category_mgt',views.category_mgt,name='category-mgt'),
     # path('manage_category',views.manage_category,name='manage-category'),

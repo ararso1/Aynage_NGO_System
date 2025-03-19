@@ -32,6 +32,9 @@ def signin(request):
 def donate(request):
     return render(request, 'donate.html')
 
+def vacancy_details(request):
+    return render(request, 'vacancy details.html')
+
 def admin_panel(request):
     return render(request, 'admin_page/index.html')
 

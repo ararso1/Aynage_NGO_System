@@ -1,5 +1,5 @@
 {% include 'components/navbar.html' %}
-
+{% load static %}
 
     <!-- Page Header Start -->
     <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
@@ -23,21 +23,59 @@
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="position-relative overflow-hidden h-100" style="min-height: 400px;">
-                        <img class="position-absolute w-100 h-100 pt-5 pe-5" src="img/about-1.jpg" alt="" style="object-fit: cover;">
-                        <img class="position-absolute top-0 end-0 bg-white ps-2 pb-2" src="img/about-2.jpg" alt="" style="width: 200px; height: 200px;">
+                        <img class="position-absolute w-100 h-100 pt-5 pe-5" src="{% static 'img/about-1.jpg' %}" alt="" style="object-fit: cover;">
+                        <img class="position-absolute top-0 end-0 bg-white ps-2 pb-2" src="{% static 'img/about-2.jpg' %}" alt="" style="width: 200px; height: 200px;">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="h-100">
                         <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">About Us</div>
-                        <h1 class="display-6 mb-5">We Help People In Need Around The World</h1>
+                        <h1 class="display-6 mb-5">Making a Difference for Those in Need</h1>
                         <div class="bg-light border-bottom border-5 border-primary rounded p-4 mb-4">
-                            <p class="text-dark mb-2">Aliqu diam amet diam et eos. Clita erat ipsum et lorem sed stet lorem sit clita duo justo erat amet</p>
-                            <span class="text-primary">Jhon Doe, Founder</span>
+                            <p class="text-dark mb-2">Every act of kindness, no matter how small, can create a ripple of change. Together, we can build a world where no one is left behind.</p>
+                            <span class="text-primary">ACFDO, Board</span>
                         </div>
-                        <p class="mb-5">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                    
+                        <div class="about1">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-">
+                                        <div class="about-tab">
+                                            <ul class="nav nav-pills nav-justified">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" data-toggle="pill" href="#tab-content-1">About</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="pill" href="#tab-content-2">Mission</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="pill" href="#tab-content-3">Vision</a>
+                                                </li>
+                                            </ul>
+                
+                                            <div class="tab-content">
+                                                <div id="tab-content-1" class="container tab-pane active">
+                                                    Aynage Child and Family Development Organization is a well-established NGO dedicated to 
+                                                    improving the lives of children and families in Ethiopia through education, health, nutrition, 
+                                                    livelihood, and youth development programs. 
+                                                    Located in the Central Ethiopia Region, Silte Zone, Silti Woreda, Kibet Town, Aynage operates 
+                                                    across eight kebeles, both in rural and urban areas. With a mission to empower communities and 
+                                                    create sustainable change, Aynage has impacted thousands of lives, fostering development and 
+                                                    resilience in the regions it serves.                                 </div>
+                                                <div id="tab-content-2" class="container tab-pane fade">
+                                                    Aynage Child and Family Development Organization  exists  to bring about an environment where the educational, health, psychosocial and economic needs of deprived, excluded and vulnerable children are met by ensuring quality education, enhancing household livelihood and youth engagement;  and improving quality health services.
+                                                </div>
+                                                <div id="tab-content-3" class="container tab-pane fade">
+                                                    Aynage Child and Family Development Organization (ACFDO)  aspires to see all deprived, excluded and vulnerable /DEV/ children become productive, confident and responsible citizens, parents and leaders of tomorrow that directly involve and contribute for the development of the country.                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- About End -->
                         <a class="btn btn-primary py-2 px-3 me-3" href="">
-                            Learn More
+                            Donate Now
                             <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
                                 <i class="fa fa-arrow-right"></i>
                             </div>
@@ -61,14 +99,16 @@
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                 <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">What We Do</div>
-                <h1 class="display-6 mb-5">Learn More What We Do And Get Involved</h1>
+                <h1 class="display-6 mb-5">Learn More About What We Do And Get Involved</h1>
             </div>
             <div class="row g-4 justify-content-center">
+                
+                <!-- Education & Youth Development -->
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
-                        <img class="img-fluid mb-4" src="img/icon-1.png" alt="">
-                        <h4 class="mb-3">Child Education</h4>
-                        <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero dolor duo.</p>
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-1.png' %}" alt="">
+                        <h4 class="mb-3">Education & Youth Development</h4>
+                        <p class="mb-4">Providing access to quality education, scholarships, and vocational training to empower the next generation.</p>
                         <a class="btn btn-outline-primary px-3" href="">
                             Learn More
                             <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
@@ -77,11 +117,13 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- Healthcare & Medical Aid -->
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
-                        <img class="img-fluid mb-4" src="img/icon-2.png" alt="">
-                        <h4 class="mb-3">Medical Treatment</h4>
-                        <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero dolor duo.</p>
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-2.png' %}" alt="">
+                        <h4 class="mb-3">Healthcare & Medical Aid</h4>
+                        <p class="mb-4">Offering free medical services, disease prevention programs, and maternal and child healthcare support.</p>
                         <a class="btn btn-outline-primary px-3" href="">
                             Learn More
                             <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
@@ -90,11 +132,13 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- Water, Sanitation & Hygiene (WASH) -->
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
-                        <img class="img-fluid mb-4" src="img/icon-3.png" alt="">
-                        <h4 class="mb-3">Pure Drinking Water</h4>
-                        <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero dolor duo.</p>
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-3.png' %}" alt="">
+                        <h4 class="mb-3">Water, Sanitation & Hygiene (WASH)</h4>
+                        <p class="mb-4">Ensuring clean drinking water, sanitation facilities, and hygiene education to improve community health.</p>
                         <a class="btn btn-outline-primary px-3" href="">
                             Learn More
                             <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
@@ -103,12 +147,103 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- Food Security & Nutrition -->
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-4.png' %}" alt="">
+                        <h4 class="mb-3">Food Security & Nutrition</h4>
+                        <p class="mb-4">Implementing feeding programs, agricultural support, and malnutrition prevention for vulnerable populations.</p>
+                        <a class="btn btn-outline-primary px-3" href="">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Poverty Alleviation & Livelihood Support -->
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-5.png' %}" alt="">
+                        <h4 class="mb-3">Poverty Alleviation & Livelihood Support</h4>
+                        <p class="mb-4">Empowering communities through microfinance, job creation, and skills development initiatives.</p>
+                        <a class="btn btn-outline-primary px-3" href="">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Disaster Relief & Humanitarian Aid -->
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-6.png' %}" alt="">
+                        <h4 class="mb-3">Disaster Relief & Humanitarian Aid</h4>
+                        <p class="mb-4">Providing emergency response, shelter, and essential supplies to communities affected by crises and natural disasters.</p>
+                        <a class="btn btn-outline-primary px-3" href="">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Environmental Protection & Climate Action -->
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-7.png' %}" alt="">
+                        <h4 class="mb-3">Environmental Protection & Climate Action</h4>
+                        <p class="mb-4">Promoting sustainability, conservation, and climate change awareness to protect our planet.</p>
+                        <a class="btn btn-outline-primary px-3" href="">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Housing & Shelter -->
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-8.png' %}" alt="">
+                        <h4 class="mb-3">Support for People with Disabilities & Special Needs</h4>
+                        <p class="mb-4">Enhancing accessibility, inclusion, and healthcare support for individuals with disabilities.</p>
+                        <a class="btn btn-outline-primary px-3" href="">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Community Development & Social Welfare -->
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-8.png' %}" alt="">
+                        <h4 class="mb-3">Community Development & Social Welfare</h4>
+                        <p class="mb-4">Supporting economic growth, empowerment programs, and initiatives to strengthen community resilience.</p>
+                        <a class="btn btn-outline-primary px-3" href="">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
     <!-- Service End -->
 
-    gallery
+
     <!-- Team Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -120,7 +255,7 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="team-item position-relative rounded overflow-hidden">
                         <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-1.jpg" alt="">
+                            <img class="img-fluid" src="{% static 'img/team-1.jpg' %}" alt="">
                         </div>
                         <div class="team-text bg-light text-center p-4">
                             <h5>Full Name</h5>
@@ -136,7 +271,7 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="team-item position-relative rounded overflow-hidden">
                         <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-2.jpg" alt="">
+                            <img class="img-fluid" src="{% static 'img/team-2.jpg' %}" alt="">
                         </div>
                         <div class="team-text bg-light text-center p-4">
                             <h5>Full Name</h5>
@@ -152,7 +287,7 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="team-item position-relative rounded overflow-hidden">
                         <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-3.jpg" alt="">
+                            <img class="img-fluid" src="{% static 'img/team-3.jpg' %}" alt="">
                         </div>
                         <div class="team-text bg-light text-center p-4">
                             <h5>Full Name</h5>
@@ -168,7 +303,7 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="team-item position-relative rounded overflow-hidden">
                         <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-4.jpg" alt="">
+                            <img class="img-fluid" src="{% static 'img/team-4.jpg' %}" alt="">
                         </div>
                         <div class="team-text bg-light text-center p-4">
                             <h5>Full Name</h5>
@@ -186,7 +321,7 @@
     </div>
     <!-- Team End -->
 
-    
+
     <!-- Testimonial Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -196,25 +331,25 @@
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                 <div class="testimonial-item text-center">
-                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-1.jpg" style="width: 100px; height: 100px;">
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="{% static 'img/testimonial-1.jpg' %}" style="width: 100px; height: 100px;">
                     <div class="testimonial-text rounded text-center p-4">
-                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea clita.</p>
+                        <p>Their support and commitment have truly made a difference. The impact of their work is felt across communities, changing lives for the better</p>
                         <h5 class="mb-1">Doner Name</h5>
                         <span class="fst-italic">Profession</span>
                     </div>
                 </div>
                 <div class="testimonial-item text-center">
-                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-2.jpg" style="width: 100px; height: 100px;">
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="{% static 'img/testimonial-2.jpg' %}" style="width: 100px; height: 100px;">
                     <div class="testimonial-text rounded text-center p-4">
-                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea clita.</p>
+                        <p>A reliable and trustworthy organization dedicated to making a meaningful change. Proud to be a part of their mission.</p>
                         <h5 class="mb-1">Doner Name</h5>
                         <span class="fst-italic">Profession</span>
                     </div>
                 </div>
                 <div class="testimonial-item text-center">
-                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-3.jpg" style="width: 100px; height: 100px;">
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="{% static 'img/testimonial-3.jpg' %}" style="width: 100px; height: 100px;">
                     <div class="testimonial-text rounded text-center p-4">
-                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea clita.</p>
+                        <p>Exceptional service and dedication! Their efforts in humanitarian causes are commendable, creating lasting change where it matters most.</p>
                         <h5 class="mb-1">Doner Name</h5>
                         <span class="fst-italic">Profession</span>
                     </div>
