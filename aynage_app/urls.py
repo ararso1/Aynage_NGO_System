@@ -19,4 +19,9 @@ urlpatterns = [
     # path('categories',views.categories,name='category-page'),
     path('admin_panel',views.admin_panel,name='admin-page'),
 
+    path('dashboard/', views.dashboard_view, name='dashboard'),  
+    path('blogs-post/', views.blogs_view, name='blogs-post'),
+    path('vacancy-post/', views.vacancy_post_view, name='vacancy-post'),  
+    path('', views.logout_view, name='logout'),
 ]
+

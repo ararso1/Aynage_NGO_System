@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aynage|| vacancy Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/adminvacancy.css' %}">
+  </head>
+  <body>
+    <div class="vacancy_container">
+    
+        <div class="vacancy_title">
+            <h4>Vacancy</h4>
+        </div>
+        <div class="vacancy_items">
+            <!-- Total Applicants Card -->
+            <div class="vacancy_card">
+               <div class="vacancy_top">
+                   <div class="card_icon">&#128100;</div>
+                   <div class="card_title">Total Applicants</div>
+               </div>
+               <div class="card_text">Total number of applicants</div>
+               <div class="vacancy_bottom">
+                   <div class="card_content">345</div>
+                   <button class="percentage_btn">75% </button>
+               </div>
+            </div>
+
+            <!-- Interviews Scheduled Card -->
+            <div class="vacancy_card">
+               <div class="vacancy_top">
+                   <div class="card_icon">&#128100;</div>
+                   <div class="card_title">Interviews Scheduled</div>
+               </div>
+               <div class="card_text">Scheduled interviews</div>
+               <div class="vacancy_bottom">
+                   <div class="card_content">120</div>
+                   <button class="percentage_btn">35% </button>
+               </div>
+            </div>
+
+            <!-- Profile Visited Card -->
+            <div class="vacancy_card">
+               <div class="vacancy_top">
+                   <div class="card_icon">&#128100;</div>
+                   <div class="card_title">Profile Visited</div>
+               </div>
+               <div class="card_text">Profiles visited by recruiters</div>
+               <div class="vacancy_bottom">
+                   <div class="card_content">200</div>
+                   <button class="percentage_btn">58% </button>
+               </div>
+            </div>
+
+            <!-- Not Qualified Card -->
+            <div class="vacancy_card">
+               <div class="vacancy_top">
+                   <div class="card_icon">&#10060;</div>
+                   <div class="card_title">Not Qualified</div>
+               </div>
+               <div class="card_text">Applicants not qualified</div>
+               <div class="vacancy_bottom">
+                   <div class="card_content">45</div>
+                   <button class="percentage_btn">13% </button>
+               </div>
+            </div>
+        </div>
+
+          
+                <div class="vacancy_statistics">
+                  <div class="statics-header">
+                    <div class="header_title">Vacancy Statistics</div>
+                    <div class="staticsMenu">
+                      <select class="dropdown">
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                      </select>
+                    </div>
+                  </div>
+          
+                  <!-- Bar Chart Section -->
+                  <div class="barchart">
+                    <div class="chart-labels">
+                      <span>Jan</span>
+                      <span>Feb</span>
+                      <span>Mar</span>
+                      <span>Apr</span>
+                      <span>May</span>
+                      <span>Jun</span>
+                      <span>Jul</span>
+                      <span>Aug</span>
+                      <span>Sep</span>
+                      <span>Oct</span>
+                      <span>Nov</span>
+                      <span>Dec</span>
+                    </div>
+                    <div class="chart-bars">
+                      <div class="month-bar">
+                        <div class="bar active-bar"  style="height: 70%;"></div>
+                      </div>
+                      <div class="month-bar">
+                        <div class="bar onhold-bar" style="height: 50%;"></div>
+                      </div>
+                      <div class="month-bar">
+                        <div class="bar shortlisted-bar" style="height: 30%;"></div>
+                      </div>
+                      <div class="month-bar">
+                        <div class="bar active-bar" style="height: 60%;"></div>
+                      </div>
+                      <div class="month-bar">
+                        <div class="bar onhold-bar" style="height: 40%;"></div>
+                      </div>
+                      <div class="month-bar">
+                        <div class="bar shortlisted-bar" style="height: 50%;"></div>
+                      </div>
+                      <div class="month-bar">
+                        <div class="bar active-bar" style="height: 80%;"></div>
+                      </div>
+                      <div class="month-bar">
+                        <div class="bar onhold-bar" style="height: 30%;"></div>
+                      </div>
+                      <div class="month-bar">
+                        <div class="bar shortlisted-bar" style="height: 50%;"></div>
+                      </div>
+                      <div class="month-bar">
+                        <div class="bar active-bar" style="height: 90%;"></div>
+                      </div>
+                      <div class="month-bar">
+                        <div class="bar onhold-bar" style="height: 60%;"></div>
+                      </div>
+                      <div class="month-bar">
+                        <div class="bar shortlisted-bar" style="height: 70%;"></div>
+                      </div>
+                    </div>
+                  </div>
+      <div class="job-applicant-section">
+        <div class="applicant-header">
+          <h3> Applicants</h3>
+        </div>
+
+        <!-- Applicant Table -->
+        <table class="applicant-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Department</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Applicant Row 1 -->
+            <tr>
+              <td class="name">
+                <div class="photo">
+                  <img src="{% static 'img/download.jpeg' %}" alt="Applicant Photo" />
+                </div>
+                <div class="name-text">John Doe</div>
+              </td>
+              <td>john.doe@example.com</td>
+              <td>Engineering</td>
+              <td>2025-03-19</td>
+              <td class="actions">
+                <button class="approve-btn">Approve</button>
+                <button class="delete-btn">Delete</button>
+              </td>
+            </tr>
+
+            <!-- Applicant Row 2 -->
+            <tr>
+              <td class="name">
+                <div class="photo">
+                  <img src="{% static 'img/download.jpeg' %}" alt="Applicant Photo" />
+                </div>
+                <div class="name-text">Jane Smith</div>
+              </td>
+              <td>jane.smith@example.com</td>
+              <td>Design</td>
+              <td>2025-03-20</td>
+              <td class="actions">
+                <button class="approve-btn">Approve</button>
+                <button class="delete-btn">Delete</button>
+              </td>
+            </tr>
+
+            <!-- More rows can be added here -->
+          </tbody>
+        </table>
+      </div>
+                </div>
+  
+
+    
+  </body>
+</html>
+
+

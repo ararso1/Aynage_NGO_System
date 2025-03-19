@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aynage||Blogs</title>
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+</head>
+<body>
+    
+            <div class="content">
+
+                <!-- BLOG OVERVIEW-->
+                <div class="blog-overview">
+                    <div class="overview-card total-blog">
+                        <div class="card-icon">
+                            <i class="fas fa-pencil-alt"></i> 
+                        </div>
+                        <h3>Total Blogs</h3>
+                        <p class="count">125</p>
+                    </div>
+                    <div class="overview-card total-author">
+                        <div class="card-icon">
+                            <i class="fas fa-user"></i> 
+                        </div>
+                        <h3>Total Authors</h3>
+                        <p class="count">45</p>
+                    </div>
+                    <div class="overview-card total-reaction">
+                        <div class="card-icon">
+                            <i class="fas fa-comments"></i> 
+                        </div>
+                        <h3>Total Comments</h3>
+                        <p class="count">530</p>
+                    </div>
+                </div>
+                  <!--  END BLOG OVERVIEW-->
+
+
+            <div class="blog-posts">
+                <h2>Blog Posts</h2>
+                <button class="add-post-btn">Add New Post</button>
+                <table class="posts-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Date Published</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Title 1</td>
+                            <td>Science</td>
+                            <td>Published</td>
+                            <td>01/01/2025</td>
+                            <td>
+                                <button class="edit-btn">Edit</button>
+                                <button class="delete-btn">Delete</button>
+                                <button class="publish-btn">publish</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> Title 2</td>
+                            <td>music</td>
+                            <td>Draft</td>
+                            <td>02/01/2025</td>
+                            <td>
+                                <button class="edit-btn">Edit</button>
+                                <button class="delete-btn">Delete</button>
+                                <button class="publish-btn">publish</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+               <!--  END BLOG TABLE -->
+
+
+         
+            <div class="post-editor">
+                <h2>Create/Edit Post</h2>
+                <form>
+                    <label for="postTitle">Post Title</label>
+                    <input type="text" id="postTitle" placeholder="Enter Post Title">
+
+                    <label for="category">Category</label>
+                    <select id="category" name="category">
+                        <option value="science">Science</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="story">Story</option>
+                        <option value="technology">Technology</option>
+                        <option value="health">Health</option>
+                        <option value="sports">Sports</option>
+                        <option value="travel">Travel</option>
+                        <option value="food">Food & Recipes</option>
+                        <option value="business">Business & Finance</option>
+                        <option value="fashion">Fashion</option>
+                    </select>
+                    
+
+                    <label for="postContent">Details</label>
+                    <textarea id="postContent" rows="5" placeholder="Write your post here..."></textarea>
+
+                    <label for="featuredImage">Featured Image</label>
+                    <input type="file" id="featuredImage">
+
+                    <button type="submit">Publish Post</button>
+                </form>
+            </div>
+              <!--  END BLOG  EDITOR-->
+        </div>
+
+</body>
+</html>
+
+
+

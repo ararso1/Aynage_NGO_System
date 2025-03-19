@@ -38,6 +38,22 @@ def vacancy_details(request):
 def admin_panel(request):
     return render(request, 'admin_page/index.html')
 
+
+def dashboard_view(request):
+    return render(request, 'admin_page/dashboard.html')
+
+def blogs_view(request):
+    return render(request, 'admin_page/blogs_post.html')
+
+def vacancy_post_view(request):
+    return render(request, 'admin_page/vacancy_post.html')
+
+def logout_view(request):
+    return render(request, 'admin_page/logout.html')
+
+
+
+
 # Category
 category_list = Category.objects.exclude(status = 2).all()
 context = {

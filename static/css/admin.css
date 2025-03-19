@@ -1,0 +1,106 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 250px;
+    height: 100vh; /* Full height */
+    background-color:#023047;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 60px; /* Space for the header */
+    transition: transform 0.3s ease; /* Smooth transition */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar.hidden {
+    transform: translateX(-250px); /* Hide sidebar */
+  }
+  
+  /* Main Content */
+  .main-content {
+    margin-left: 250px; /* Initially set to sidebar width */
+    padding: 20px;
+    transition: margin-left 0.3s ease; /* Smooth transition when sidebar hides */
+    overflow-y: auto;
+  }
+  
+  /* Header Styling */
+  .main-content .header {
+    position: fixed;
+    top: 0;
+    left: 250px;
+    right: 0;
+    background-color: #023047;
+    color: #ffff;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 10vh;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease;
+  }
+  
+  /* When sidebar is hidden */
+  .main-content .header,
+  .main-content {
+    margin-left: 0; /* Move both the header and main content to the left when the sidebar is hidden */
+  }
+  
+  /* Sidebar Links */
+  .sidebar .sidebar-links {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar .sidebar-links li {
+    padding: 15px;
+    border-bottom: 1px solid #444;
+  }
+  
+  .sidebar .sidebar-links li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* For the menu icon */
+  .menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
+  /* For the icons */
+  .fullscreen-icon, .dark-light-icon {
+    font-size: 25px;
+  }
+  
+  /* Dark Mode */
+  .dark-mode {
+    background-color: #222;
+    color: white;
+  }
+  
+  .profile {
+    display: flex;
+  }
+  
+  .profile img {
+    align-items: center;
+    border-radius: 50%;
+  }
+  
+  .profile .text {
+    display: flex;
+    align-content: center;
+    align-items: center;
+  }
+  
