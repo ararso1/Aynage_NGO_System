@@ -1,5 +1,9 @@
 from . import views
 from django.urls import path
+from django.conf.urls import handler404
+from .views import custom_404
+
+handler404 = custom_404
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -13,10 +17,12 @@ urlpatterns = [
     path('signin', views.signin, name='signin'),
     path('donate', views.donate, name='donate'),
     path('vacancy_details', views.vacancy_details, name='vacancy_details'),
-    #Admin panel
+    # Admin panel
     # path('category_mgt',views.category_mgt,name='category-mgt'),
     # path('manage_category',views.manage_category,name='manage-category'),
     # path('categories',views.categories,name='category-page'),
-    path('admin_panel',views.admin_panel,name='admin-page'),
+    path('admin_panel',views.admin_panel,name='admin_panel'),
+    path('blog_list', views.blog_list, name='blog_list'),
+    path('vacancy_list', views.vacancy_list, name='vacancy_list')
 
 ]

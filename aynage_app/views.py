@@ -35,8 +35,21 @@ def donate(request):
 def vacancy_details(request):
     return render(request, 'vacancy details.html')
 
+def custom_404(request, exception=None):
+    return render(request, '404.html', status=404)
+
+
 def admin_panel(request):
     return render(request, 'admin_page/index.html')
+
+def blog_list(request):
+    return render(request, 'admin_page/blog_list.html')
+
+def vacancy_list(request):
+    return render(request, 'admin_page/vacancy_list.html')
+
+def admin_dashboard(request):
+    return render(request, 'admin_page/dashboard.html')
 
 # Category
 category_list = Category.objects.exclude(status = 2).all()
