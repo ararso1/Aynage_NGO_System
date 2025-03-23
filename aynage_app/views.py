@@ -1,5 +1,8 @@
-from django.shortcuts import render
-from .models import Category, Post
+from django.shortcuts import render,redirect
+from .models import Category, Blog, User
+from django.http import JsonResponse
+from django.utils import timezone
+from .forms import BlogForm
 # Create your views here.
 
 def home(request):
@@ -38,12 +41,9 @@ def vacancy_details(request):
 def custom_404(request, exception=None):
     return render(request, '404.html', status=404)
 
-
+# Admin panel
 def admin_panel(request):
     return render(request, 'admin_page/index.html')
-
-def blog_list(request):
-    return render(request, 'admin_page/blog_list.html')
 
 def vacancy_list(request):
     return render(request, 'admin_page/vacancy_list.html')
@@ -51,36 +51,30 @@ def vacancy_list(request):
 def admin_dashboard(request):
     return render(request, 'admin_page/dashboard.html')
 
-# Category
-category_list = Category.objects.exclude(status = 2).all()
-context = {
-    'page_title' : 'Simple Blog Site',
-    'category_list' : category_list,
-    'category_list_limited' : category_list[:3]
-}
-
-def category_mgt(request):
+def blog_list(request):
     categories = Category.objects.all()
-    context['page_title'] = "Category Management"
-    context['categories'] = categories
-    return render(request, 'admin/category_mgt.html', context)
+    return render(request, 'admin_page/blog_list.html', {'categories': categories})
 
-def manage_category(request,pk=None):
-    # category = Category.objects.all()
-    if pk == None:
-        category = {}
-    elif pk > 0:
-        category = Category.objects.filter(id=pk).first()
+def create_blogs(request):
+    return render(request, 'admin_page/create_blog.html')
+
+def create_vacancy(request):
+    return render(request, 'admin_page/create_vacancy.html')
+
+
+def create_blog(request):
+    if request.method == 'POST':
+        form = BlogForm(request.POST, request.FILES)
+        if form.is_valid():
+            blog = form.save(commit=False)
+            blog.author = request.user  # Set the author to the current logged-in user
+            blog.save()
+            return JsonResponse({'success': True})  # Indicate success
+        else:
+            # Convert form errors to a dictionary
+            errors = {}
+            for field, error_list in form.errors.items():
+                errors[field] = error_list[0]  # Only return the first error for each field
+            return JsonResponse({'success': False, 'errors': errors}, status=400)
     else:
-        category = {}
-    context['page_title'] = "Manage Category"
-    context['category'] = category
-
-    return render(request, 'admin/manage_category.html',context)
-
-def categories(request):
-    categories = Category.objects.filter(status = 1).all()
-    context['page_title'] = "Category Management"
-    context['categories'] = categories
-    return render(request, 'admin/categories.html',context)
-
+        return JsonResponse({'error': 'Invalid request method'}, status=405)

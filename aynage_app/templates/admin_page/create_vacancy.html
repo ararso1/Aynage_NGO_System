@@ -1,0 +1,209 @@
+{% include 'admin_page/navbar.html' %}
+{% load static %}
+
+<div class="app-content">
+    <div class="app-content-header">
+        <h1 class="app-content-headerText">Blogs</h1>
+        <button class="mode-switch" title="Switch Theme">
+            <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+            </svg>
+        </button>
+        <button id="newBlogButton" class="app-content-headerButton">New Blog</button>
+    </div>
+
+    <div class="app-content-actions">
+        <input class="search-bar" placeholder="Search..." type="text">
+        <div class="app-content-actions-wrapper">
+            <div class="filter-button-wrapper">
+                <button class="action-button filter jsFilter"><span>Filter</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter">
+                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+                    </svg>
+                </button>
+                <div class="filter-menu">
+                    <label>Category</label>
+                    <select>
+                        <option>All Categories</option>
+                        <option>Furniture</option>
+                        <option>Decoration</option>
+                        <option>Kitchen</option>
+                        <option>Bathroom</option>
+                    </select>
+                    <label>Status</label>
+                    <select>
+                        <option>All Status</option>
+                        <option>Published</option>
+                        <option>Unpublished</option>
+                    </select>
+                    <div class="filter-menu-buttons">
+                        <button class="filter-button reset">Reset</button>
+                        <button class="filter-button apply">Apply</button>
+                    </div>
+                </div>
+            </div>
+            <button class="action-button list active" title="List View">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
+                    <line x1="8" y1="6" x2="21" y2="6"/>
+                    <line x1="8" y1="12" x2="21" y2="12"/>
+                    <line x1="8" y1="18" x2="21" y2="18"/>
+                    <line x1="3" y1="6" x2="3.01" y2="6"/>
+                    <line x1="3" y1="12" x2="3.01" y2="12"/>
+                    <line x1="3" y1="18" x2="3.01" y2="18"/>
+                </svg>
+            </button>
+            <button class="action-button grid" title="Grid View">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid">
+                    <rect x="3" y="3" width="7" height="7"/>
+                    <rect x="14" y="3" width="7" height="7"/>
+                    <rect x="14" y="14" width="7" height="7"/>
+                    <rect x="3" y="14" width="7" height="7"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Blog Form Section -->
+    <div class="products-area-wrapper tableView">
+<!--         <div class="products-header">
+            <h1 class="app-content-headerText">Add New Blog</h1>
+        </div> -->
+        <h1 class="app-content-headerText">Add New Blog</h1>
+        <form method="POST" action="" class="blog-form"></form>
+            <div class="products-row1">
+                <div class="product-cell">
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+                </div>
+            </div>
+            <div class="products-row1">
+                <div class="product-cell">
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" name="status" required>
+                            <option value="">Choose..</option>
+                            <option value="tech">Technology</option>
+                            <option value="tech">Fashion</option>
+                            <option value="tech">Help</option>
+                            <option value="tech">NGO</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="products-row1">
+                <div class="product-cell">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" rows="4" required></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="products-row1">
+                <div class="product-cell">
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" name="status" required>
+                          <option value="1">Published</option>
+                          <option value="0">Unpublished</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="products-row1">
+                <div class="product-cell">
+                    <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="file" id="image" name="banner" accept="image/*">
+                      </div>
+                </div>
+            </div>
+            <div class="products-row1">
+                <div class="product-cell">
+                    <div class="form-group">
+                        <button id="newBlogButton" class="app-content-headerButton">Create Blog</button>
+
+                      </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    /* Style for the Blog Form Section */
+.products-area-wrapper.tableView {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.app-content-headerText {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+}
+
+.products-row1 {
+    margin-bottom: 20px;
+}
+
+.product-cell {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #727171;
+}
+
+.form-group input[type="text"],
+.form-group input[type="file"],
+.form-group select,
+.form-group textarea {
+    width: 200%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="file"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-group select {
+    appearance: none;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* Add some spacing and styling for the form */
+
+</style>
+<script src="{% static 'js/script.js' %}"></script>
+
+
+
+</body>
+</html>

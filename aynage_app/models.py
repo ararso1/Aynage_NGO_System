@@ -23,11 +23,11 @@ class Category(models.Model):
     def __str__(self):
         return self.name
     
-class Post(models.Model):
+class Blog(models.Model):
     category=models.ForeignKey(Category,on_delete=models.CASCADE)
     title = models.TextField()
     author = models.ForeignKey(User,on_delete=models.CASCADE)
-    blog_post = models.TextField()
+    description = models.TextField()
     banner = models.ImageField(blank=True, null = True, upload_to= 'images/')
     status = models.IntegerField(default = 0)
     date_added = models.DateTimeField(default=timezone.now)

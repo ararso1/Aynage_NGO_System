@@ -68,6 +68,17 @@
 .submit-button:hover {
   background-color: #45a049;
 }
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+#general-error {
+  color: red;
+  font-size: 1em;
+  margin-bottom: 15px;
+}
 </style>
   <div class="app-content">
     <div class="app-content-header">
@@ -78,51 +89,50 @@
           <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
         </svg>
       </button>
-      <button id="newBlogButton" class="app-content-headerButton">New Blog</button>
+      <a href="{% url 'create_blog' %}"><button id="" class="app-content-headerButton">New Blog</button></a>
     </div>
       <!-- Modal Form for New Blog -->
     <div id="newBlogModal" class="modal">
         <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Create New Blog</h2>
-        <form id="blogForm">
-            <div class="form-group">
+        <form id="blogForm" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <!-- General error placeholder -->
+          <div id="general-error-container"></div>
+        
+          <div class="form-group">
             <label for="title">Title</label>
             <input type="text" id="title" name="title" required>
-            </div>
-            <div class="form-group">
+          </div>
+          <div class="form-group">
             <label for="category">Category</label>
             <select id="category" name="category" required>
-                <option value="Technology">Technology</option>
-                <option value="Lifestyle">Lifestyle</option>
-                <option value="Travel">Travel</option>
-                <option value="Food">Food</option>
+              {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+              {% endfor %}
             </select>
-            </div>
-            <div class="form-group">
+          </div>
+          <div class="form-group">
             <label for="description">Description</label>
             <textarea id="description" name="description" rows="4" required></textarea>
-            </div>
-            <div class="form-group">
+          </div>
+          <div class="form-group">
             <label for="status">Status</label>
             <select id="status" name="status" required>
-                <option value="Published">Published</option>
-                <option value="Unpublished">Unpublished</option>
+              <option value="1">Published</option>
+              <option value="0">Unpublished</option>
             </select>
-            </div>
-            <div class="form-group">
+          </div>
+          <div class="form-group">
             <label for="image">Image</label>
-            <input type="file" id="image" name="image" accept="image/*">
-            </div>
-            <div class="form-group">
+            <input type="file" id="image" name="banner" accept="image/*">
+          </div>
+          <div class="form-group">
             <label for="author">Author</label>
             <input type="text" id="author" name="author" required>
-            </div>
-            <div class="form-group">
-            <label for="date">Date</label>
-            <input type="text" id="date" name="date" readonly>
-            </div>
-            <button type="submit" class="submit-button">Create Blog</button>
+          </div>
+          <button type="submit" class="submit-button">Create Blog</button>
         </form>
         </div>
     </div>
@@ -347,7 +357,7 @@
 </div>
 <!-- partial -->
 <script>
-    // Get the modal and button elements
+      // Get the modal and button elements
     const modal = document.getElementById("newBlogModal");
     const newBlogButton = document.getElementById("newBlogButton");
     const closeButton = document.querySelector(".close");
@@ -371,24 +381,82 @@
       }
     });
   
-    // Handle form submission
-    document.getElementById("blogForm").addEventListener("submit", (event) => {
-      event.preventDefault();
-      // Collect form data
-      const formData = {
-        title: document.getElementById("title").value,
-        category: document.getElementById("category").value,
-        description: document.getElementById("description").value,
-        status: document.getElementById("status").value,
-        image: document.getElementById("image").files[0],
-        author: document.getElementById("author").value,
-        date: document.getElementById("date").value,
-      };
-      console.log("Form Data:", formData); // Replace with your submission logic
-      alert("Blog created successfully!");
-      modal.style.display = "none";
-    });
-  </script>
+    document.getElementById("blogForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    // Clear previous errors
+    clearErrors();
+
+    // Collect form data
+    const formData = new FormData();
+    formData.append("title", document.getElementById("title").value);
+    formData.append("category", document.getElementById("category").value);
+    formData.append("description", document.getElementById("description").value);
+    formData.append("status", document.getElementById("status").value === "Published" ? 1 : 0);
+    formData.append("banner", document.getElementById("image").files[0]);
+    formData.append("author", document.getElementById("author").value);
+
+    try {
+      // Send data to the backend
+      const response = await fetch("/create_blog/", {
+        method: "POST",
+        body: formData,
+        headers: {
+          "X-CSRFToken": "{{ csrf_token }}",  // Include CSRF token for security
+        },
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        // Redirect to the blog list page
+        window.location.href = "http://127.0.0.1:8080/blog_list/";
+      } else {
+        // Display errors
+        displayErrors(data.errors);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      displayGeneralError("An error occurred while submitting the form.");
+    }
+  });
+
+  // Function to clear previous errors
+  function clearErrors() {
+    const errorElements = document.querySelectorAll(".error-message");
+    errorElements.forEach((element) => element.remove());
+
+    const generalError = document.getElementById("general-error");
+    if (generalError) {
+      generalError.remove();
+    }
+  }
+
+  // Function to display general errors at the top of the form
+  function displayGeneralError(message) {
+    const form = document.getElementById("blogForm");
+    const errorDiv = document.createElement("div");
+    errorDiv.id = "general-error";
+    errorDiv.className = "error-message";
+    errorDiv.style.color = "red";
+    errorDiv.textContent = message;
+    form.prepend(errorDiv);
+  }
+
+  // Function to display field-specific errors
+  function displayErrors(errors) {
+    for (const field in errors) {
+      const inputElement = document.querySelector(`[name="${field}"]`);
+      if (inputElement) {
+        const errorDiv = document.createElement("div");
+        errorDiv.className = "error-message";
+        errorDiv.style.color = "red";
+        errorDiv.textContent = errors[field];
+        inputElement.insertAdjacentElement("afterend", errorDiv);
+      }
+    }
+  }
+</script>
   <script  src="{% static 'js/script.js' %}"></script>
 
 </body>

@@ -1,5 +1,76 @@
 {% include 'admin_page/navbar.html' %}
 {%load static%}
+
+<style>
+  /* Modal Styles */
+.modal {
+display: none; /* Hidden by default */
+position: fixed;
+z-index: 1000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+overflow: auto;
+background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+background-color: #fff;
+margin: 10% auto;
+padding: 20px;
+border: 1px solid #888;
+width: 50%;
+max-width: 600px;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+color: #aaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+cursor: pointer;
+}
+
+.close:hover {
+color: #000;
+}
+
+.form-group {
+margin-bottom: 15px;
+}
+
+.form-group label {
+display: block;
+margin-bottom: 5px;
+font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+width: 100%;
+padding: 8px;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+
+.submit-button {
+background-color: #4CAF50;
+color: white;
+padding: 10px 20px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+
+.submit-button:hover {
+background-color: #45a049;
+}
+</style>
+
   <div class="app-content">
     <div class="app-content-header">
       <h1 class="app-content-headerText">Vacancies</h1>
@@ -9,8 +80,56 @@
           <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
         </svg>
       </button>
-      <button class="app-content-headerButton">New Vacancy</button>
+      <a href="{% url 'create_blog' %}"><button id="" class="app-content-headerButton">New Blog</button></a>
     </div>
+
+          <!-- Modal Form for New Blog -->
+          <div id="newBlogModal" class="modal">
+            <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create New Blog</h2>
+            <form id="blogForm">
+                <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    <option value="Technology">Technology</option>
+                    <option value="Lifestyle">Lifestyle</option>
+                    <option value="Travel">Travel</option>
+                    <option value="Food">Food</option>
+                </select>
+                </div>
+                <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                <label for="status">Status</label>
+                <select id="status" name="status" required>
+                    <option value="Published">Published</option>
+                    <option value="Unpublished">Unpublished</option>
+                </select>
+                </div>
+                <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" id="image" name="image" accept="image/*">
+                </div>
+                <div class="form-group">
+                <label for="author">Author</label>
+                <input type="text" id="author" name="author" required>
+                </div>
+                <div class="form-group">
+                <label for="date">Date</label>
+                <input type="text" id="date" name="date" readonly>
+                </div>
+                <button type="submit" class="submit-button">Create Blog</button>
+            </form>
+            </div>
+        </div>
+    
     <div class="app-content-actions">
       <input class="search-bar" placeholder="Search..." type="text">
       <div class="app-content-actions-wrapper">
@@ -230,6 +349,50 @@
 </div>
 <!-- partial -->
   <script  src="{% static 'js/script.js' %}"></script>
+
+  <script>
+    // Get the modal and button elements
+    const modal = document.getElementById("newBlogModal");
+    const newBlogButton = document.getElementById("newBlogButton");
+    const closeButton = document.querySelector(".close");
+  
+    // Open the modal when "New Blog" button is clicked
+    newBlogButton.addEventListener("click", () => {
+      modal.style.display = "block";
+      // Auto-fill the date field with today's date
+      document.getElementById("date").value = new Date().toLocaleDateString();
+    });
+  
+    // Close the modal when the close button is clicked
+    closeButton.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+  
+    // Close the modal when clicking outside the modal
+    window.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  
+    // Handle form submission
+    document.getElementById("blogForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      // Collect form data
+      const formData = {
+        title: document.getElementById("title").value,
+        category: document.getElementById("category").value,
+        description: document.getElementById("description").value,
+        status: document.getElementById("status").value,
+        image: document.getElementById("image").files[0],
+        author: document.getElementById("author").value,
+        date: document.getElementById("date").value,
+      };
+      console.log("Form Data:", formData); // Replace with your submission logic
+      alert("Blog created successfully!");
+      modal.style.display = "none";
+    });
+  </script>
 
 </body>
 </html>

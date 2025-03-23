@@ -21,8 +21,10 @@ urlpatterns = [
     # path('category_mgt',views.category_mgt,name='category-mgt'),
     # path('manage_category',views.manage_category,name='manage-category'),
     # path('categories',views.categories,name='category-page'),
-    path('admin_panel',views.admin_panel,name='admin_panel'),
+    path('admin_dashboard',views.admin_dashboard,name='admin_panel'),
     path('blog_list', views.blog_list, name='blog_list'),
-    path('vacancy_list', views.vacancy_list, name='vacancy_list')
+    path('vacancy_list', views.vacancy_list, name='vacancy_list'),
+    path('create_blog/', views.create_blogs, name='create_blog'),
+    path('create_vacancy/', views.create_vacancy, name='create_blog'),
 
 ]
