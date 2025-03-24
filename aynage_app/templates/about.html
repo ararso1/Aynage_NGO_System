@@ -1,6 +1,6 @@
 {% include 'components/navbar.html' %}
 {% load static %}
-
+<link href="{% static 'css/filter.css' %}" rel="stylesheet">
     <!-- Page Header Start -->
     <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container text-center">
@@ -243,6 +243,154 @@
     </div>
     <!-- Service End -->
 
+    <!-- gallery -->
+    <section id="Projects">
+        <div class="container">
+            <h1>Gallery</h1>
+            <div class="items-links">
+                <div class="item-link menu-active" data-filter="all">All</div>
+                <div class="item-link" data-filter="donors">Donors</div>
+                <div class="item-link" data-filter="vacancy">Vacancy</div>
+                <div class="item-link" data-filter="blogs">Blogs</div>
+            </div>
+            <div class="gallery">
+                <!-- Gallery items -->
+                <div class="project-img" data-type="donors">
+                    <img src="{% static 'img/donation-1.jpg' $}" alt="Donors 1">
+                    <div class="overlay">
+                        <h4>Donors</h4>
+                        <p>Donate for Aynage </p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-img" data-type="vacancy">
+                    <img src="{% static 'img/vacancy-1.jpg' %}" alt="Vacancy 1">
+                    <div class="overlay">
+                        <h4>Vacancy</h4>
+                        <p>We have staff vacancy</p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-img" data-type="blogs">
+                    <img src="{% static 'img/blog-1.jpg' %}" alt="Blog 1">
+                    <div class="overlay">
+                        <h4>Blog</h4>
+                        <p>Our recent blog.</p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                 <!-- More items -->
+                 <div class="project-img" data-type="donors">
+                    <img src="{% static 'img/donation-2.jpg' %}" alt="Donors 1">
+                    <div class="overlay">
+                        <h4>Donors</h4>
+                        <p>Donate for Aynage </p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-img" data-type="vacancy">
+                    <img src="{% static 'img/vacancy-2.jpg' %}" alt="Vacancy 1">
+                    <div class="overlay">
+                        <h4>Vacancy</h4>
+                        <p>We have staff vacancy</p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-img" data-type="blogs">
+                    <img src="{% static 'img/blog-2.jpg' %}" alt="Blog 1">
+                    <div class="overlay">
+                        <h4>Blog</h4>
+                        <p>Our recent blog.</p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <!--more Items more-->
+                <div class="project-img" data-type="donors">
+                    <img src="{% static 'img/donation-3.jpg' %}" alt="Donors 1">
+                    <div class="overlay">
+                        <h4>Donors</h4>
+                        <p>Donate for Aynage </p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-img" data-type="vacancy">
+                    <img src="{% static 'img/vacancy-3.jpg' %}" alt="Vacancy 1">
+                    <div class="overlay">
+                        <h4>Vacancy</h4>
+                        <p>We have staff vacancy</p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-img" data-type="blogs">
+                    <img src="{% static 'img/blog-3.jpg' %}" alt="Blog 1">
+                    <div class="overlay">
+                        <h4>Blog</h4>
+                        <p>Our recent blog.</p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <!--MORE ITEMS-->
+                <div class="project-img" data-type="donors">
+                    <img src="{% static 'img/donation-4.jpg' %}" alt="Donors 1">
+                    <div class="overlay">
+                        <h4>Donors</h4>
+                        <p>Donate for Aynage </p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-img" data-type="vacancy">
+                    <img src="{% static 'img/vacancy-4.jpg' %}" alt="Vacancy 1">
+                    <div class="overlay">
+                        <h4>Vacancy</h4>
+                        <p>We have staff vacancy</p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-img" data-type="blogs">
+                    <img src="{% static 'img/blog-4.jpg' %}" alt="Blog 1">
+                    <div class="overlay">
+                        <h4>Blog</h4>
+                        <p>Our recent blog.</p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+    </section>
 
     <!-- Team Start -->
     <div class="container-xxl py-5">

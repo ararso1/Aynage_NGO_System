@@ -52,15 +52,23 @@ def admin_dashboard(request):
     return render(request, 'admin_page/dashboard.html')
 
 def blog_list(request):
-    categories = Category.objects.all()
-    return render(request, 'admin_page/blog_list.html', {'categories': categories})
+    blogs = Blog.objects.all().order_by('-created_at')  # Fetch blogs ordered by newest first
+    return render(request, 'admin_page/blog_list.html', {'blogs': blogs})
 
 def create_blogs(request):
-    return render(request, 'admin_page/create_blog.html')
+    if request.method == "POST":
+        form = BlogForm(request.POST, request.FILES)
+        print(form.data)
+        if form.is_valid():
+            form.save()
+            return redirect('blog_list')  # Redirect to blog list page after submission
+    else:
+        form = BlogForm()
+
+    return render(request, 'admin_page/create_blog.html', {'form': form})
 
 def create_vacancy(request):
     return render(request, 'admin_page/create_vacancy.html')
-
 
 def create_blog(request):
     if request.method == 'POST':

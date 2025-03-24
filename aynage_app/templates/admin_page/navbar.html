@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Aynage - Admin Dashboard</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="{% static 'css/style_admin.css' %}">
 
 </head>
@@ -43,13 +44,63 @@
         </a>
       </li>
     </ul>
-    <div class="account-info">
+    <div class="account-info" style="cursor: pointer;">
       <div class="account-info-picture">
         <img src="https://images.unsplash.com/photo-1527736947477-2790e28f3443?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTE2fHx3b21hbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="Account">
       </div>
       <div class="account-info-name">Monica Ggggggggggg.</div>
-      <button class="account-info-more">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+      <button class="account-info-more" onclick="toggleDropdown()" style="cursor: pointer;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal">
+          <circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>
+        </svg>
       </button>
+    
+      <!-- Dropdown Menu -->
+      <div id="profileDropdown" class="dropdown-menu">
+        <a href="">Profile</a>
+        <a href="">Logout</a>
+      </div>
     </div>
+    
   </div>
+
+  <style>
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  left: 10px;
+  bottom: 60px;
+  width: 150px;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  background: #d6d5d5;
+}
+
+  </style>
+
+<script>
+  function toggleDropdown() {
+    var dropdown = document.getElementById("profileDropdown");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", function(event) {
+    var dropdown = document.getElementById("profileDropdown");
+    var profileButton = document.querySelector(".account-info-more");
+    if (!profileButton.contains(event.target) && !dropdown.contains(event.target)) {
+      dropdown.style.display = "none";
+    }
+  });
+</script>

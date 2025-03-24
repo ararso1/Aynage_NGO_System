@@ -24,17 +24,27 @@ class Category(models.Model):
         return self.name
     
 class Blog(models.Model):
-    category=models.ForeignKey(Category,on_delete=models.CASCADE)
-    title = models.TextField()
-    author = models.ForeignKey(User,on_delete=models.CASCADE)
+    STATUS_CHOICES = [
+        (1, 'Published'),
+        (0, 'Unpublished'),
+    ]
+    
+    CATEGORY_CHOICES = [
+        ('tech', 'Technology'),
+        ('fashion', 'Fashion'),
+        ('help', 'Help'),
+        ('ngo', 'NGO'),
+    ]
+
+    title = models.CharField(max_length=255)
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     description = models.TextField()
-    banner = models.ImageField(blank=True, null = True, upload_to= 'images/')
-    status = models.IntegerField(default = 0)
-    date_added = models.DateTimeField(default=timezone.now)
-    date_updated = models.DateTimeField(auto_now=True)
+    status = models.IntegerField(choices=STATUS_CHOICES, default=0)
+    banner = models.ImageField(upload_to='blog_images/', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.title + " - " + self.category.name
+        return self.title
 
 class Vacancy(models.Model):
     title = models.CharField(max_length=250)

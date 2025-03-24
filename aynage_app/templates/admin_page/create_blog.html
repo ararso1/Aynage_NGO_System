@@ -9,7 +9,7 @@
                 <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
             </svg>
         </button>
-        <button id="newBlogButton" class="app-content-headerButton">New Blog</button>
+        <a href="{% url 'create_blogs' %}"><button id="" class="app-content-headerButton">New Blog</button></a>
     </div>
 
     <div class="app-content-actions">
@@ -65,11 +65,9 @@
 
     <!-- Blog Form Section -->
     <div class="products-area-wrapper tableView">
-<!--         <div class="products-header">
-            <h1 class="app-content-headerText">Add New Blog</h1>
-        </div> -->
         <h1 class="app-content-headerText">Add New Blog</h1>
-        <form method="POST" action="" class="blog-form"></form>
+        <form method="POST" action="{% url 'create_blogs' %}" enctype="multipart/form-data" class="blog-form">
+            {% csrf_token %}
             <div class="products-row1">
                 <div class="product-cell">
                     <div class="form-group">
@@ -78,20 +76,22 @@
                     </div>
                 </div>
             </div>
+
             <div class="products-row1">
                 <div class="product-cell">
                     <div class="form-group">
-                        <label for="status">Status</label>
-                        <select id="status" name="status" required>
+                        <label for="category">Category</label>
+                        <select id="category" name="category" required>
                             <option value="">Choose..</option>
                             <option value="tech">Technology</option>
-                            <option value="tech">Fashion</option>
-                            <option value="tech">Help</option>
-                            <option value="tech">NGO</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="help">Help</option>
+                            <option value="ngo">NGO</option>
                         </select>
                     </div>
                 </div>
             </div>
+
             <div class="products-row1">
                 <div class="product-cell">
                     <div class="form-group">
@@ -100,35 +100,38 @@
                     </div>
                 </div>
             </div>
+
             <div class="products-row1">
                 <div class="product-cell">
                     <div class="form-group">
                         <label for="status">Status</label>
                         <select id="status" name="status" required>
-                          <option value="1">Published</option>
-                          <option value="0">Unpublished</option>
+                            <option value="1">Published</option>
+                            <option value="0">Unpublished</option>
                         </select>
                     </div>
                 </div>
             </div>
+
             <div class="products-row1">
                 <div class="product-cell">
                     <div class="form-group">
                         <label for="image">Image</label>
                         <input type="file" id="image" name="banner" accept="image/*">
-                      </div>
+                    </div>
                 </div>
             </div>
+
             <div class="products-row1">
                 <div class="product-cell">
                     <div class="form-group">
-                        <button id="newBlogButton" class="app-content-headerButton">Create Blog</button>
-
-                      </div>
+                        <button type="submit" id="newBlogButton" class="app-content-headerButton">Create Blog</button>
+                    </div>
                 </div>
             </div>
         </form>
     </div>
+
 </div>
 
 <style>
@@ -202,7 +205,6 @@
 
 </style>
 <script src="{% static 'js/script.js' %}"></script>
-
 
 
 </body>
