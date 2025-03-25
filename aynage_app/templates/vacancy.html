@@ -21,47 +21,23 @@
             <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Vacancies</div>
             <h1 class="display-6 mb-5">Our Latest Job Vacancies</h1>
         </div>
-
+        
         <div class="row g-4">
+            {% for vacancy in vac %}
             <div class="col-md-4">
                 <div class="card border-0 shadow-sm">
                     <img class="card-img-top" src="{% static 'img/vacancy-1.jpg' %}" alt="Job Position 1">
                     <div class="card-body">
-                        <h5 class="card-title">Job Title 1</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Location: City</h6>
-                        <p class="card-text">Experience: 3+ years in relevant field.</p>
-                        <p class="card-text">Brief description of the job role and responsibilities.</p>
-                        <p class="card-text"><strong>Publisher:</strong> Aynage Organization</p>
+                        <h5 class="card-title">{{vacancy.title}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Location: {{vacancy.location}}</h6>
+                        <p class="card-text">Experience: {{vacancy.experience}}+ years in relevant field.</p>
+                        <p class="card-text">{{vacancy.description|truncatechars:50 }}</p>
+                        <p class="card-text"><strong>Publisher:</strong> Aynage Child and Family Development Organization</p>
                         <a href="{% url 'vacancy_details' %}" class="btn btn-primary">See Details</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card border-0 shadow-sm">
-                    <img class="card-img-top" src="{% static 'img/vacancy-2.jpg' %}" alt="Job Position 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Job Title 2</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Location: City</h6>
-                        <p class="card-text">Experience: 2+ years in relevant field.</p>
-                        <p class="card-text">Brief description of the job role and responsibilities.</p>
-                        <p class="card-text"><strong>Publisher:</strong> Aynage Organization</p>
-                        <a href="{% url 'vacancy_details' %}" class="btn btn-primary">See Details</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card border-0 shadow-sm">
-                    <img class="card-img-top" src="{% static 'img/vacancy-3.jpg' %}" alt="Job Position 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Job Title 3</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Location: City</h6>
-                        <p class="card-text">Experience: 5+ years in relevant field.</p>
-                        <p class="card-text">Brief description of the job role and responsibilities.</p>
-                        <p class="card-text"><strong>Publisher:</strong> Aynage Organization</p>
-                        <a href="{% url 'vacancy_details' %}" class="btn btn-primary">See Details</a>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>

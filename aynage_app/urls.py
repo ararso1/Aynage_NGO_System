@@ -26,5 +26,9 @@ urlpatterns = [
     path('vacancy_list', views.vacancy_list, name='vacancy_list'),
     path('create_blogs', views.create_blogs, name='create_blogs'),
     path('create_vacancy', views.create_vacancy, name='create_vacancy'),
+    path('edit_blog/<int:blog_id>/', views.update_blog, name='edit_blog'),
+    path('delete_blog/<int:blog_id>/', views.delete_blog, name='delete_blog'),
+    path('edit_vacancy/<int:vacancy_id>/', views.update_vacancy, name='edit_vacancy'),
+    path('delete_vacancy/<int:vacancy_id>/', views.delete_vacancy, name='delete_vacancy'),
 
 ]

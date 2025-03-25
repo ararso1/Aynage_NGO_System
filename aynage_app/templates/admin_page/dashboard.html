@@ -28,7 +28,7 @@
 
         .card {
             flex: 1;
-            min-width: 250px;
+            min-width: 400px;
             background: white;
             border-radius: 15px;
             padding: 25px;
@@ -125,7 +125,7 @@
           <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
         </svg>
       </button>
-      <a href="{% url 'create_blogs' %}"><button id="" class="app-content-headerButton">New Blog</button></a>
+      <a href="{% url 'create_blogs' %}"><button id="" class="app-content-headerButton">Logout</button></a>
     </div>
 
     <div class="app-content-actions">
@@ -172,52 +172,40 @@
       </div>
       
       <div class="cards-container">
-          <div class="card card-blogs">
-              <div class="card-icon">
-                  <i class="fas fa-blog"></i>
-              </div>
-              <div class="card-title">Blog Posts</div>
-              <div class="card-value">1,248</div>
-              <div class="card-footer">
-                  <i class="fas fa-calendar-alt"></i>
-                  Last updated today
-              </div>
-          </div>
-          <div class="card card-blogs">
+        <div class="card card-blogs">
             <div class="card-icon">
                 <i class="fas fa-blog"></i>
             </div>
             <div class="card-title">Blog Posts</div>
-            <div class="card-value">1,248</div>
+            <div class="card-value">{{ blog }}</div>
             <div class="card-footer">
                 <i class="fas fa-calendar-alt"></i>
-                Last updated today
+                {% if last_blog != "No updates yet" %}
+                Last updated: {{ last_blog|date:"F d, Y H:i" }}
+                {% else %}
+                    Last updated: No updates yet
+                {% endif %}
             </div>
-          </div>
-          <div class="card card-blogs">
+        </div>
+    
+        <div class="card card-vacancies">
             <div class="card-icon">
-                <i class="fas fa-blog"></i>
+                <i class="fas fa-briefcase"></i>
             </div>
-            <div class="card-title">Blog Posts</div>
-            <div class="card-value">1,248</div>
+            <div class="card-title">Vacancy Posts</div>
+            <div class="card-value">{{ vacancy }}</div>
             <div class="card-footer">
                 <i class="fas fa-calendar-alt"></i>
-                Last updated today
+                {% if last_vacancy != "No updates yet" %}
+                Last updated: {{ last_vacancy|date:"F d, Y H:i" }}
+                {% else %}
+                    Last updated: No updates yet
+                {% endif %}
             </div>
-          </div>
-          
-          <div class="card card-vacancies">
-              <div class="card-icon">
-                  <i class="fas fa-briefcase"></i>
-              </div>
-              <div class="card-title">Vacancy Posts</div>
-              <div class="card-value">56</div>
-              <div class="card-footer">
-                  <i class="fas fa-calendar-alt"></i>
-                  Last updated today
-              </div>
-          </div>
+        </div>    
       </div>
+    
+      
   </div>
 
   </div>

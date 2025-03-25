@@ -65,14 +65,15 @@
 
     <!-- Blog Form Section -->
     <div class="products-area-wrapper tableView">
-        <h1 class="app-content-headerText">Add New Blog</h1>
-        <form method="POST" id="createBlogForm" action="{% url 'create_blogs' %}" enctype="multipart/form-data" class="blog-form">
+        <h1 class="app-content-headerText">Edit Blog</h1>
+        <form method="POST" id="createBlogForm" action="{% url 'edit_blog' blog.id %}" enctype="multipart/form-data" class="blog-form">
             {% csrf_token %}
+            
             <div class="products-row1">
                 <div class="product-cell">
                     <div class="form-group">
                         <label for="title">Title:</label>
-                        <input type="text" id="title" name="title" required>
+                        <input type="text" id="title" name="title" value="{{ blog.title }}" required>
                     </div>
                 </div>
             </div>
@@ -83,10 +84,10 @@
                         <label for="category">Category</label>
                         <select id="category" name="category" required>
                             <option value="">Choose..</option>
-                            <option value="tech">Technology</option>
-                            <option value="fashion">Fashion</option>
-                            <option value="help">Help</option>
-                            <option value="ngo">NGO</option>
+                            <option value="tech" {% if blog.category == "tech" %}selected{% endif %}>Technology</option>
+                            <option value="fashion" {% if blog.category == "fashion" %}selected{% endif %}>Fashion</option>
+                            <option value="help" {% if blog.category == "help" %}selected{% endif %}>Help</option>
+                            <option value="ngo" {% if blog.category == "ngo" %}selected{% endif %}>NGO</option>
                         </select>
                     </div>
                 </div>
@@ -96,7 +97,7 @@
                 <div class="product-cell">
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea id="description" name="description" rows="4" required></textarea>
+                        <textarea id="description" name="description" rows="4" required>{{ blog.description }}</textarea>
                     </div>
                 </div>
             </div>
@@ -106,8 +107,8 @@
                     <div class="form-group">
                         <label for="status">Status</label>
                         <select id="status" name="status" required>
-                            <option value="1">Published</option>
-                            <option value="0">Unpublished</option>
+                            <option value="1" {% if blog.status %}selected{% endif %}>Published</option>
+                            <option value="0" {% if not blog.status %}selected{% endif %}>Unpublished</option>
                         </select>
                     </div>
                 </div>
@@ -118,6 +119,10 @@
                     <div class="form-group">
                         <label for="image">Image</label>
                         <input type="file" id="image" name="banner" accept="image/*">
+                        {% if blog.banner %}
+                            <p>Current Image:</p>
+                            <img src="{{ blog.banner.url }}" alt="{{ blog.title }}" style="width: 150px; height: 150px;">
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -125,21 +130,22 @@
             <div class="products-row1">
                 <div class="product-cell">
                     <div class="form-group">
-                        <button type="submit" id="newBlogButton" class="app-content-headerButton">Create Blog</button>
+                        <button type="submit" id="editBlogButton" class="app-content-headerButton">Update Blog</button>
                     </div>
                 </div>
             </div>
         </form>
     </div>
-    
     <!-- Success Confirmation Modal -->
     <div id="successModal" class="modall">
         <div class="modal-content">
-            <h3>Blog Created Successfully!</h3>
-            <p>Your blog has been created. Redirecting to the blog list...</p>
-            <button onclick="redirectToBlogList()">Okay</button>
+            <h3>Blog Updated Successfully!</h3>
+            <p>Your blog has been updated successfully.</p>
+            <p>Redirecting...</p>
+            
         </div>
     </div>
+
 
 </div>
 
@@ -209,6 +215,8 @@
     background-color: #fff;
     cursor: pointer;
 }
+
+/* Add some spacing and styling for the form */
 
     /* Modal background */
     .modall {
@@ -287,8 +295,6 @@
         }
     }
 </style>
-
-<!-- JavaScript to handle modal and redirection -->
 <script>
     // Show the success modal after the form is submitted successfully
     const form = document.getElementById("createBlogForm");
@@ -308,16 +314,14 @@
             // Show success modal after successful submission
             successModal.style.display = "flex";
 
-            // Wait for the user to click "Okay" to redirect
+            // Automatically redirect after 3 seconds
+            setTimeout(() => {
+                window.location.href = "{% url 'blog_list' %}"; // Replace with actual URL to the blog list page
+            }, 3000); // Redirect after 3 seconds
         } else {
             // Handle error if necessary
             alert("Error creating blog. Please try again.");
         }
-    }
-
-    // Redirect to the blog list page after clicking "Okay" on the success modal
-    function redirectToBlogList() {
-        window.location.href = "{% url 'blog_list' %}"; // Replace with actual URL to the blog list page
     }
 </script>
 <script src="{% static 'js/script.js' %}"></script>
