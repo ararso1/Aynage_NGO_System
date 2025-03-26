@@ -1,5 +1,6 @@
 {% include 'components/navbar.html' %}
 {% load static %}
+<link href="{% static 'css/filter.css' %}" rel="stylesheet">
 
     <!-- Page Header Start -->
     <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
@@ -16,8 +17,520 @@
     </div>
     <!-- Page Header End -->
 
-    counter which shows their impact    
-    about and video on the left side 
-    list of impact card(with image text) for child dev't, climage,edc, health etc and gallery at the end by category if possible
+            <!-- Facts Start -->
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Our Impact</div>
+                <h1 class="display-6 mb-5">Transforming lives of children and family through sustainable solutions</h1>
+            </div>
+            <div class="facts" data-parallax="scroll" data-image-src="{% static 'img/facts.jpg' %}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="facts-item">
+                                <i class="flaticon-home"></i>
+                                <div class="facts-text">
+                                    <h3 class="facts-plus" data-toggle="counter-up">3600</h3>
+                                    <p>Children Enrolled</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="facts-item">
+                                <i class="flaticon-charity"></i>
+                                <div class="facts-text">
+                                    <h3 class="facts-plus" data-toggle="counter-up">400</h3>
+                                    <p>Volunteers</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="facts-item">
+                                <i class="flaticon-kindness"></i>
+                                <div class="facts-text">
+                                    <h3 class="facts-dollar" data-toggle="counter-up">10000</h3>
+                                    <p>Our Goal</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="facts-item">
+                                <i class="flaticon-donation"></i>
+                                <div class="facts-text">
+                                    <h3 class="facts-dollar" data-toggle="counter-up">5000</h3>
+                                    <p>Raised</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Facts End -->
+    
+
+    <!-- Causes Start -->
+    <div class="container-xxl bg-light my-5 py-5">
+        <div class="container py-5">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Our Work</div>
+                <h1 class="display-6 mb-5">Supporting Children Through Every Life Stage</h1>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100">
+                        <div class="text-center p-4 pt-0">
+                            <div class="d-inline-block bg-primary text-white rounded-bottom fs-5 pb-1 px-3 mb-4">
+                                <small>0-5 years</small>
+                            </div>
+                            <h5 class="mb-3">Early Childhood Development</h5>
+                            <p>Health and nutrition programs for mothers and infants. Early learning initiatives for cognitive development. Family support systems for nurturing care.</p>
+                        </div>
+                        <div class="position-relative mt-auto">
+                            <img class="img-fluid" src="{% static 'img/courses-1.jpg' %}" alt="">
+                            <div class="causes-overlay">
+                                <a class="btn btn-outline-primary" href="">
+                                    Donate Now
+                                    <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                        <i class="fa fa-arrow-right"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100">
+                        <div class="text-center p-4 pt-0">
+                            <div class="d-inline-block bg-primary text-white rounded-bottom fs-5 pb-1 px-3 mb-4">
+                                <small>6-14 years</small>
+                            </div>
+                            <h5 class="mb-3">Basic Education Program</h5>
+                            <p>Quality primary education with life skills. School feeding programs to enhance learning. Safe environments with gender equality focus.</p>
+
+                        </div>
+                        <div class="position-relative mt-auto">
+                            <img class="img-fluid" src="{% static 'img/courses-2.jpg' %}" alt="">
+                            <div class="causes-overlay">
+                                <a class="btn btn-outline-primary" href="">
+                                    Donate Now
+                                    <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                        <i class="fa fa-arrow-right"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100">
+                        <div class="text-center p-4 pt-0">
+                            <div class="d-inline-block bg-primary text-white rounded-bottom fs-5 pb-1 px-3 mb-4">
+                                <small>15-24 years</small>
+                            </div>
+                            <h5 class="mb-3">Youth Development Program</h5>
+                            <p>Vocational training and entrepreneurship opportunities. Leadership development initiatives. Mental health support and career counseling. Monthly pocket money support for collage or university students</p>
+
+                        </div>
+                        <div class="position-relative mt-auto">
+                            <img class="img-fluid" src="{% static 'img/courses-3.jpg' %}" alt="">
+                            <div class="causes-overlay">
+                                <a class="btn btn-outline-primary" href="">
+                                    Donate Now
+                                    <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                        <i class="fa fa-arrow-right"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 justify-content-center" style="margin-top: 50px;">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100">
+                        <div class="text-center p-4 pt-0">
+                            <div class="d-inline-block bg-primary text-white rounded-bottom fs-5 pb-1 px-3 mb-4">
+                                <small>Sponsor</small>
+                            </div>
+                            <h5 class="mb-3">Sponsor Relation and communication</h5>
+                            <p>Personalized child-sponsor connections. Regular progress reporting and updates. Community-based communication platforms..</p>
+                        </div>
+                        <div class="position-relative mt-auto">
+                            <img class="img-fluid" src="{% static 'img/courses-1.jpg' %}" alt="">
+                            <div class="causes-overlay">
+                                <a class="btn btn-outline-primary" href="">
+                                    Donate Now
+                                    <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                        <i class="fa fa-arrow-right"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100">
+                        <div class="text-center p-4 pt-0">
+                            <div class="d-inline-block bg-primary text-white rounded-bottom fs-5 pb-1 px-3 mb-4">
+                                <small>Women</small>
+                            </div>
+                            <h5 class="mb-3">Women Empowerment</h5>
+                            <p>Financial literacy by Providing goats and ships. Leadership training and rights awareness. GBV prevention and economic cooperatives.</p>
+
+                        </div>
+                        <div class="position-relative mt-auto">
+                            <img class="img-fluid" src="{% static 'img/courses-2.jpg' %}" alt="">
+                            <div class="causes-overlay">
+                                <a class="btn btn-outline-primary" href="">
+                                    Donate Now
+                                    <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                        <i class="fa fa-arrow-right"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100">
+                        <div class="text-center p-4 pt-0">
+                            <div class="d-inline-block bg-primary text-white rounded-bottom fs-5 pb-1 px-3 mb-4">
+                                <small>Aid</small>
+                            </div>
+                            <h5 class="mb-3">Healthcare & Medical Aid</h5>
+                            <p>Delivers essential healthcare through mobile clinics, maternal care, disease prevention, lab services, medical supplies, and hygienic toilets to improve community well-being.</p>
+
+                        </div>
+                        <div class="position-relative mt-auto">
+                            <img class="img-fluid" src="{% static 'img/courses-3.jpg' %}" alt="">
+                            <div class="causes-overlay">
+                                <a class="btn btn-outline-primary" href="">
+                                    Donate Now
+                                    <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                        <i class="fa fa-arrow-right"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Causes End -->
+
+    
+
+    <!-- gallery -->
+    <section id="Projects">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Gallery</div>
+                <h1 class="display-6 mb-5">See Our Latest Gallery</h1>
+            </div>
+            <div class="items-links">
+                <div class="item-link menu-active" data-filter="all">All</div>
+                <div class="item-link" data-filter="donors">Donors</div>
+                <div class="item-link" data-filter="vacancy">Vacancy</div>
+                <div class="item-link" data-filter="blogs">Blogs</div>
+            </div>
+            <div class="gallery">
+                <!-- Gallery items -->
+                <div class="project-img" data-type="donors">
+                    <img src="{% static 'img/donation-1.jpg' %}" alt="Donors 1">
+                    <div class="overlay">
+                        <h4>Donors</h4>
+                        <p>Donate for Aynage </p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-img" data-type="vacancy">
+                    <img src="{% static 'img/vacancy-1.jpg' %}" alt="Vacancy 1">
+                    <div class="overlay">
+                        <h4>Vacancy</h4>
+                        <p>We have staff vacancy</p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-img" data-type="blogs">
+                    <img src="{% static 'img/blog-1.jpg' %}" alt="Blog 1">
+                    <div class="overlay">
+                        <h4>Blog</h4>
+                        <p>Our recent blog.</p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                 <!-- More items -->
+                 <div class="project-img" data-type="donors">
+                    <img src="{% static 'img/donation-2.jpg' %}" alt="Donors 1">
+                    <div class="overlay">
+                        <h4>Donors</h4>
+                        <p>Donate for Aynage </p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-img" data-type="vacancy">
+                    <img src="{% static 'img/vacancy-2.jpg' %}" alt="Vacancy 1">
+                    <div class="overlay">
+                        <h4>Vacancy</h4>
+                        <p>We have staff vacancy</p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-img" data-type="blogs">
+                    <img src="{% static 'img/blog-2.jpg' %}" alt="Blog 1">
+                    <div class="overlay">
+                        <h4>Blog</h4>
+                        <p>Our recent blog.</p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <!--more Items more-->
+                <div class="project-img" data-type="donors">
+                    <img src="{% static 'img/donation-3.jpg' %}" alt="Donors 1">
+                    <div class="overlay">
+                        <h4>Donors</h4>
+                        <p>Donate for Aynage </p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-img" data-type="vacancy">
+                    <img src="{% static 'img/vacancy-3.jpg' %}" alt="Vacancy 1">
+                    <div class="overlay">
+                        <h4>Vacancy</h4>
+                        <p>We have staff vacancy</p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-img" data-type="blogs">
+                    <img src="{% static 'img/blog-3.jpg' %}" alt="Blog 1">
+                    <div class="overlay">
+                        <h4>Blog</h4>
+                        <p>Our recent blog.</p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <!--MORE ITEMS-->
+                <div class="project-img" data-type="donors">
+                    <img src="{% static 'img/donation-4.jpg' %}" alt="Donors 1">
+                    <div class="overlay">
+                        <h4>Donors</h4>
+                        <p>Donate for Aynage </p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-img" data-type="vacancy">
+                    <img src="{% static 'img/vacancy-4.jpg' %}" alt="Vacancy 1">
+                    <div class="overlay">
+                        <h4>Vacancy</h4>
+                        <p>We have staff vacancy</p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-img" data-type="blogs">
+                    <img src="{% static 'img/blog-4.jpg' %}" alt="Blog 1">
+                    <div class="overlay">
+                        <h4>Blog</h4>
+                        <p>Our recent blog.</p>
+                        <div class="action-area">
+                            <a href="#" class="btn">View</a>
+                            <a href="#" class="btn btn-light">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+<style>
+    .blog1 {
+        position: relative;
+        width: 100%;
+        padding: 45px 0 15px 0;
+    }
+    
+    .blog1 .blog-item {
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        background: #f3f6ff;
+    }
+    
+    .blog1 .blog-img {
+        width: 100%;
+    }
+    
+    .blog1 .blog-img img {
+        width: 100%;
+    }
+    
+    .blog1 .blog-text {
+        padding: 30px 30px 15px 30px;
+    }
+    
+    .blog1 .blog-text h3 {
+        font-size: 22px;
+        font-weight: 700;
+    }
+    
+    .blog1 .blog-text h3 a {
+        color: #4a4c70;
+    }
+    
+    .blog1 .blog-text h3 a:hover {
+        color: #FDBE33;
+    }
+    
+    .blog1 .blog-text p {
+        margin: 0;
+    }
+    
+    .blog1 .blog-meta {
+        margin: 0 30px;
+        padding-top: 15px;
+        display: flex;
+        border-top: 1px solid rgba(0, 0, 0, .15);
+    }
+    
+    .blog1 .blog-meta p {
+        margin: 0;
+        color: #777777;
+        padding: 0 30px;
+        border-right: 1px solid rgba(0, 0, 0, .15);
+    }
+    
+    .blog1 .blog-meta p:first-child {
+        padding-left: 0;
+    }
+    
+    .blog1 .blog-meta p:last-child {
+        padding-right: 0;
+        border: none;
+    }
+    
+    .blog1 .blog-meta i {
+        color: #4a4c70;
+        margin-right: 8px
+    }
+    
+    .blog1 .pagination {
+        margin-bottom: 15px;
+    }
+    
+    .blog1 .pagination .page-link {
+        color: #4a4c70;
+        border-radius: 0;
+        border-color: #4a4c70;
+    }
+    
+    .blog1 .pagination .page-link:hover,
+    .blog1 .pagination .page-item.active .page-link {
+        color: #FDBE33;
+        background: #4a4c70;
+    }
+    
+    .blog1 .pagination .disabled .page-link {
+        color: #999999;
+    }
+    
+    
+        </style>
+            <!-- Blog Start -->
+            <div class="blog1" style="margin-top: 50px;">
+                <div class="container">
+                    <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                        <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Our Blog</div>
+                        <h1 class="display-6 mb-5">See Our Latest news & articles</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="blog-item">
+                                <div class="blog-img">
+                                    <img src="{% static 'img/blog-1.jpg' %}" alt="Image">
+                                </div>
+                                <div class="blog-text">
+                                    <h3><a href="#">📌 Empowering Communities Through Education</a></h3>
+                                    <p>
+                                        Discover how our education initiatives are transforming lives and creating brighter futures.
+                                    </p>
+                                </div>
+                                <div class="blog-meta">
+                                    <p><i class="fa fa-user"></i><a href="">Admin</a></p>
+                                    <p><i class="fa fa-comments"></i><a href="">15 Comments</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="blog-item">
+                                <div class="blog-img">
+                                    <img src="{% static 'img/blog-2.jpg' %}" alt="Image">
+                                </div>
+                                <div class="blog-text">
+                                    <h3><a href="#">📌 Providing Clean Water for a Healthier Tomorrow</a></h3>
+                                    <p>
+                                        Learn about our latest water projects and how access to clean water is changing communities.
+                                    </p>
+                                </div>
+                                <div class="blog-meta">
+                                    <p><i class="fa fa-user"></i><a href="">Admin</a></p>
+                                    <p><i class="fa fa-comments"></i><a href="">15 Comments</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="blog-item">
+                                <div class="blog-img">
+                                    <img src="{% static 'img/blog-3.jpg' %}" alt="Image">
+                                </div>
+                                <div class="blog-text">
+                                    <h3><a href="#">📌 Supporting Vulnerable Families with Essential Aid</a></h3>
+                                    <p>
+                                        See how our relief programs are making a difference for families in need.
+                                    </p>
+                                </div>
+                                <div class="blog-meta">
+                                    <p><i class="fa fa-user"></i><a href="">Admin</a></p>
+                                    <p><i class="fa fa-comments"></i><a href="">15 Comments</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Blog End -->
+    
 
     {% include 'components/footer.html' %}
