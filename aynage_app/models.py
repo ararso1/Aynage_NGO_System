@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
+from ckeditor.fields import RichTextField
+
 
 # Create your models here.
 
@@ -38,9 +40,9 @@ class Blog(models.Model):
 
     title = models.CharField(max_length=255)
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
-    description = models.TextField()
-    status = models.IntegerField(choices=STATUS_CHOICES, default=0)
-    banner = models.ImageField(upload_to='images/', null=True, blank=True)
+    description = RichTextField()
+    status = models.IntegerField(choices=STATUS_CHOICES)
+    banner = models.ImageField(upload_to='images/')
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)  # Auto-updates on every save

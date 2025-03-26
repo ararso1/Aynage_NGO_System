@@ -160,7 +160,7 @@
           <span class="status disabled">UnPublished</span>
           {% endif %}
         </div>
-        <div class="product-cell sales"><span class="cell-label">Description:</span>{{ blog.description|truncatechars:50 }}</div>
+        <div class="product-cell sales"><span class="cell-label">Description:</span>{{ blog.description|truncatechars:50|safe }}</div>
         <div class="product-cell stock"><span class="cell-label">Date:</span>{{blog.created_at}}</div>
         
         <div class="product-cell action">

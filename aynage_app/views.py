@@ -17,6 +17,9 @@ def about(request):
 def blogs(request):
     return render(request, 'blogs.html')
 
+def blog_details(request):
+    return render(request, 'blog_details.html')
+
 def contact(request):
     return render(request, 'contact.html')
 
@@ -33,14 +36,15 @@ def vacancy(request):
     vac = Vacancy.objects.all().order_by('-created_at')
     return render(request, 'vacancy.html', {'vac':vac})
 
+def vacancy_details(request, vac_id):
+    vacancy = get_object_or_404(Vacancy, id=vac_id)
+    return render(request, 'vacancy details.html', {'vacancy':vacancy})
+
 def signin(request):
     return render(request, 'login.html')
 
 def donate(request):
     return render(request, 'donate.html')
-
-def vacancy_details(request):
-    return render(request, 'vacancy details.html')
 
 def custom_404(request, exception=None):
     return render(request, '404.html', status=404)
@@ -123,13 +127,17 @@ def blog_list(request):
 # @login_required
 def create_blogs(request):
     if request.method == 'POST':
+        print('ggggggggggg')
         form = BlogForm(request.POST, request.FILES)
         if form.is_valid():
-            blog = form.save(commit=False)
+            print('kkkkkkkkkkkkkkkkk')
+            # blog = form.save(commit=False)
             # blog.added_by = request.user  # Set the user who created the blog
             # blog.updated_by = request.user
-            blog.save()
+            form.save()
             return redirect('blog_list')
+        else:
+            print(form.errors)
     else:
         form = BlogForm()
     return render(request, 'admin_page/create_blog.html', {'form': form})
