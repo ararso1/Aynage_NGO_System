@@ -42,7 +42,7 @@ class Blog(models.Model):
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     description = RichTextField()
     status = models.IntegerField(choices=STATUS_CHOICES)
-    banner = models.ImageField(upload_to='images/')
+    banner = models.ImageField(upload_to='images/', null=True)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)  # Auto-updates on every save
@@ -52,6 +52,17 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
 
+class Gallery(models.Model):
+    CATEGORY_CHOICES = [
+        ('certifications', 'Certifications and Banners'),
+    ]
+
+    category = models.CharField(max_length=100, choices=CATEGORY_CHOICES)
+    img = models.ImageField(upload_to='gallery/')
+    description = models.TextField(blank=True, null=True)
+    
+    def __str__(self):
+        return self.category
 
 class Vacancy(models.Model):
     JOB_TYPE_CHOICES = [

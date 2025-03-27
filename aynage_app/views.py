@@ -11,8 +11,29 @@ from django.db.models import Max, F
 def home(request):
     return render(request, 'index.html')
 
-def about(request):
-    return render(request, 'about.html')
+def about(request, category=None):
+    print(category,'kkkkkkkkkkkkk')
+    if category:
+        gal = Gallery.objects.filter(category=category)
+    else:
+        gal = Gallery.objects.all()
+    return render(request, 'about.html', {'gal': gal, 'selected_category': category})
+
+def fetch_gallery(request, category):
+    """ Return gallery items as JSON based on category """
+    if category == 'all':
+        gal = Gallery.objects.all()
+    else:
+        gal = Gallery.objects.filter(category=category)
+    
+    gallery_data = [
+        {
+            'description': image.description,
+            'category': image.category,
+            'image_url': image.img.url
+        } for image in gal
+    ]
+    return JsonResponse({'gallery': gallery_data})
 
 def blogs(request):
     return render(request, 'blogs.html')
