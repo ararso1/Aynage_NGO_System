@@ -5,19 +5,22 @@ from django.utils import timezone
 from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.db.models import Max, F
-
+from django.core.mail import send_mail
+from django.conf import settings
 # Create your views here.
 
 def home(request):
     return render(request, 'index.html')
 
 def about(request, category=None):
-    print(category,'kkkkkkkkkkkkk')
     if category:
         gal = Gallery.objects.filter(category=category)
     else:
         gal = Gallery.objects.all()
     return render(request, 'about.html', {'gal': gal, 'selected_category': category})
+
+def gallery(request):
+    return render(request, 'gallery.html')
 
 def fetch_gallery(request, category):
     """ Return gallery items as JSON based on category """
@@ -42,6 +45,72 @@ def blog_details(request):
     return render(request, 'blog_details.html')
 
 def contact(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        subject = request.POST.get("subject")
+        message = request.POST.get("message")
+
+        # Save message to the database
+        contact = Contact.objects.create(
+            name=name, 
+            email=email, 
+            subject=subject, 
+            message=message
+        )
+
+        # Email to admin
+        admin_email = "areealisho12@gmail.com"
+        admin_subject = f"New Contact Form Submission: {subject}"
+        admin_message = f"""
+        You have received a new contact form submission:
+        
+        Name: {name}
+        Email: {email}
+        Subject: {subject}
+        Message: {message}
+        
+        Please respond to this inquiry promptly.
+        """
+        
+        send_mail(
+            admin_subject,
+            admin_message,
+            settings.DEFAULT_FROM_EMAIL,  # Use your configured email
+            [admin_email],
+            fail_silently=False,
+        )
+
+        # Thank you email to user
+        user_subject = "Thank you for contacting us"
+        user_message = f"""
+        Dear {name},
+        
+        Thank you for reaching out to us. We have received your message regarding:
+        "{subject}"
+        
+        Our team will review your inquiry and get back to you as soon as possible.
+        
+        Here's a copy of your message for your reference:
+        {message}
+        
+        Best regards,
+        Aynage Child and Family Development Orginization
+        """
+        
+        send_mail(
+            user_subject,
+            user_message,
+            settings.DEFAULT_FROM_EMAIL,
+            [email],
+            fail_silently=False,
+        )
+
+        # Send a success response
+        return JsonResponse({
+            "success": True, 
+            "message": "Your message has been sent successfully! A confirmation email has been sent to your inbox."
+        })
     return render(request, 'contact.html')
 
 def climate(request):

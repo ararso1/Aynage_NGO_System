@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 from ckeditor.fields import RichTextField
 
-
 # Create your models here.
 
 class User(AbstractUser):
@@ -93,3 +92,14 @@ class Vacancy(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    subject = models.CharField(max_length=455)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Message from {self.name} - {self.subject}"

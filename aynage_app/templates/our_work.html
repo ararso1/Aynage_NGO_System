@@ -8,8 +8,8 @@
             <h1 class="display-4 text-white animated slideInDown mb-4">Our Work</h1>
             <nav aria-label="breadcrumb animated slideInDown">
                 <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+                    <li class="breadcrumb-item"><a class="text-white" href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a class="text-white" href="{% url 'our_work' %}">Pages</a></li>
                     <li class="breadcrumb-item text-primary active" aria-current="page">Our Work</li>
                 </ol>
             </nav>
@@ -17,55 +17,55 @@
     </div>
     <!-- Page Header End -->
 
-            <!-- Facts Start -->
-            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Our Impact</div>
-                <h1 class="display-6 mb-5">Transforming lives of children and family through sustainable solutions</h1>
-            </div>
-            <div class="facts" data-parallax="scroll" data-image-src="{% static 'img/facts.jpg' %}">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6">
-                            <div class="facts-item">
-                                <i class="flaticon-home"></i>
-                                <div class="facts-text">
-                                    <h3 class="facts-plus" data-toggle="counter-up">3600</h3>
-                                    <p>Children Enrolled</p>
-                                </div>
+        <!-- Facts Start -->
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Our Impact</div>
+            <h1 class="display-6 mb-5">Transforming lives of children and family through sustainable solutions</h1>
+        </div>
+        <!-- Facts Start -->
+        <div class="facts" data-parallax="scroll" data-image-src="{% static 'img/facts.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="facts-item">
+                            <i class="flaticon-people"></i>
+                            <div class="facts-text">
+                                <h3 class="facts-plus" data-toggle="counter-up">3600</h3>
+                                <p>Children Enrolled</p>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="facts-item">
-                                <i class="flaticon-charity"></i>
-                                <div class="facts-text">
-                                    <h3 class="facts-plus" data-toggle="counter-up">400</h3>
-                                    <p>Volunteers</p>
-                                </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="facts-item">
+                            <i class="flaticon-charity"></i>
+                            <div class="facts-text">
+                                <h3 class="facts-plus" data-toggle="counter-up">1000</h3>
+                                <p>Youth Trained</p>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="facts-item">
-                                <i class="flaticon-kindness"></i>
-                                <div class="facts-text">
-                                    <h3 class="facts-dollar" data-toggle="counter-up">10000</h3>
-                                    <p>Our Goal</p>
-                                </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="facts-item">
+                            <i class="flaticon-kindness"></i>
+                            <div class="facts-text">
+                                <h3 class="facts-plus" data-toggle="counter-up">500</h3>
+                                <p>Women Empowered</p>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="facts-item">
-                                <i class="flaticon-donation"></i>
-                                <div class="facts-text">
-                                    <h3 class="facts-dollar" data-toggle="counter-up">5000</h3>
-                                    <p>Raised</p>
-                                </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="facts-item">
+                            <i class="flaticon-donation"></i>
+                            <div class="facts-text">
+                                <h3 class="facts-plus" data-toggle="counter-up">2000</h3>
+                                <p>Students Helped</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Facts End -->
-    
+        </div>
+        <!-- Facts End -->    
 
     <!-- Causes Start -->
     <div class="container-xxl bg-light my-5 py-5">
@@ -87,8 +87,8 @@
                         <div class="position-relative mt-auto">
                             <img class="img-fluid" src="{% static 'img/courses-1.jpg' %}" alt="">
                             <div class="causes-overlay">
-                                <a class="btn btn-outline-primary" href="">
-                                    Donate Now
+                                <a class="btn btn-outline-primary" href="{% url 'gallery' %}">
+                                    Our Gallery
                                     <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
                                         <i class="fa fa-arrow-right"></i>
                                     </div>
@@ -110,8 +110,8 @@
                         <div class="position-relative mt-auto">
                             <img class="img-fluid" src="{% static 'img/courses-2.jpg' %}" alt="">
                             <div class="causes-overlay">
-                                <a class="btn btn-outline-primary" href="">
-                                    Donate Now
+                                <a class="btn btn-outline-primary" href="{% url 'gallery' %}">
+                                    Our Gallery
                                     <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
                                         <i class="fa fa-arrow-right"></i>
                                     </div>
@@ -133,8 +133,8 @@
                         <div class="position-relative mt-auto">
                             <img class="img-fluid" src="{% static 'img/courses-3.jpg' %}" alt="">
                             <div class="causes-overlay">
-                                <a class="btn btn-outline-primary" href="">
-                                    Donate Now
+                                <a class="btn btn-outline-primary" href="{% url 'gallery' %}">
+                                    Our Gallery
                                     <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
                                         <i class="fa fa-arrow-right"></i>
                                     </div>
@@ -158,8 +158,8 @@
                         <div class="position-relative mt-auto">
                             <img class="img-fluid" src="{% static 'img/courses-1.jpg' %}" alt="">
                             <div class="causes-overlay">
-                                <a class="btn btn-outline-primary" href="">
-                                    Donate Now
+                                <a class="btn btn-outline-primary" href="{% url 'gallery' %}">
+                                    Our Gallery
                                     <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
                                         <i class="fa fa-arrow-right"></i>
                                     </div>
@@ -181,8 +181,8 @@
                         <div class="position-relative mt-auto">
                             <img class="img-fluid" src="{% static 'img/courses-2.jpg' %}" alt="">
                             <div class="causes-overlay">
-                                <a class="btn btn-outline-primary" href="">
-                                    Donate Now
+                                <a class="btn btn-outline-primary" href="{% url 'gallery' %}">
+                                    Our Gallery
                                     <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
                                         <i class="fa fa-arrow-right"></i>
                                     </div>
@@ -204,8 +204,8 @@
                         <div class="position-relative mt-auto">
                             <img class="img-fluid" src="{% static 'img/courses-3.jpg' %}" alt="">
                             <div class="causes-overlay">
-                                <a class="btn btn-outline-primary" href="">
-                                    Donate Now
+                                <a class="btn btn-outline-primary" href="{% url 'gallery' %}">
+                                    Our Gallery
                                     <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
                                         <i class="fa fa-arrow-right"></i>
                                     </div>
