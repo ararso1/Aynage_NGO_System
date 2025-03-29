@@ -149,9 +149,14 @@
             {% if blog.banner %}
             <img src="{{ blog.banner.url }}" alt="{{ blog.title }}" width="50">
             {% endif %}
-            <span>{{ blog.title }}</span>
+            <span>{{ blog.title|truncatechars:30 }}</span>
           </div>
-        <div class="product-cell category"><span class="cell-label">Category:</span>{{ blog.category }}</div>
+          <div class="product-cell category">
+            <span class="cell-label">Category:</span>
+            {% for category in blog.categories.all %}
+              <span>{{ category.name }}</span>{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          </div>
         <div class="product-cell status-cell">
           <span class="cell-label">Status:</span>
           {% if blog.status %} 

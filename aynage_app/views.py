@@ -7,6 +7,10 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Max, F
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.auth import authenticate, login,logout
+from django.contrib import messages
+from django.db.models import Count
+
 # Create your views here.
 
 def home(request):
@@ -39,10 +43,44 @@ def fetch_gallery(request, category):
     return JsonResponse({'gallery': gallery_data})
 
 def blogs(request):
-    return render(request, 'blogs.html')
+    blogs = Blog.objects.all().order_by('-created_at')
 
-def blog_details(request):
-    return render(request, 'blog_details.html')
+    return render(request, 'blogs.html', {'blogs':blogs})
+
+def blog_details(request, blog_id):
+    blog = get_object_or_404(Blog, id=blog_id)
+    top5 = Blog.objects.all().order_by('-created_at')[:5]
+    all_blogs = Blog.objects.all().order_by('-created_at')
+
+    # Fetch categories with the count of associated blogs
+    categories = Category.objects.annotate(count=Count('blogs')).order_by('-count')
+
+    return render(request, 'blog_details.html', {
+        'blog': blog,
+        'all_blogs':all_blogs,
+        'top5': top5,
+        'categories': categories
+    })
+
+def blog_by_category(request, category_id=None):
+    categories = Category.objects.annotate(count=Count('blogs')).order_by('-count')  # Get all categories with post counts
+    all_blogs = Blog.objects.all().order_by('-created_at')
+    top5 = Blog.objects.all().order_by('-created_at')[:5]
+
+    if category_id:
+        selected_category = get_object_or_404(Category, id=category_id)  # Get the selected category
+        blogs = Blog.objects.filter(categories=selected_category).order_by('-created_at')  # Filter blogs
+    else:
+        selected_category = None
+        blogs = Blog.objects.all().order_by('-created_at')  # Show all blogs if no category selected
+
+    return render(request, 'blogby_category.html', {
+        'blogs': blogs,
+        'all_blogs':all_blogs,
+        'categories': categories,
+        'selected_category': selected_category,
+        'top5':top5
+    })
 
 def contact(request):
     if request.method == "POST":
@@ -140,6 +178,30 @@ def custom_404(request, exception=None):
     return render(request, '404.html', status=404)
 
 
+def user_login(request):
+    if request.user.is_authenticated:  # Check if the user is already logged in
+        return redirect("admin_panel")  # Redirect to dashboard
+
+    if request.method == "POST":
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+
+        user = authenticate(request, username=email, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect("admin_panel")  # Redirect to dashboard
+        else:
+            messages.error(request, "Invalid email or password.")
+
+    return render(request, "login.html")  # Render login page if not authenticated
+
+
+def logout_user(request):
+    logout(request)  # Logs out the user
+    return redirect('login')  # Redirect to the login page
+
+@login_required
 def admin_dashboard(request):
     blog_count = Blog.objects.count()
     vacancy_count = Vacancy.objects.count()
@@ -169,10 +231,12 @@ def admin_dashboard(request):
 
 
 # vacancy part
+@login_required
 def vacancy_list(request):
     vacancies = Vacancy.objects.all().order_by('-created_at') 
     return render(request, 'admin_page/vacancy_list.html', {'vacancies':vacancies})
 
+@login_required
 def create_vacancy(request):
     if request.method == "POST":
         form = VacancyForm(request.POST, request.FILES)
@@ -185,7 +249,8 @@ def create_vacancy(request):
     
     return render(request, 'admin_page/create_vacancy.html', {'form': form})
 
-# @login_required
+
+@login_required
 def update_vacancy(request, vacancy_id):
     vacancy = get_object_or_404(Vacancy, id=vacancy_id)
     
@@ -201,6 +266,7 @@ def update_vacancy(request, vacancy_id):
     
     return render(request, 'admin_page/edit_vacancy.html', {'form': form, 'vacancy': vacancy})
 
+@login_required
 def delete_vacancy(request, vacancy_id):
     vacancy = get_object_or_404(Vacancy, id=vacancy_id)
     if request.method == "POST":
@@ -210,11 +276,12 @@ def delete_vacancy(request, vacancy_id):
 
 
 # blog part
+@login_required
 def blog_list(request):
     blogs = Blog.objects.all().order_by('-created_at')  # Fetch blogs ordered by newest first
     return render(request, 'admin_page/blog_list.html', {'blogs': blogs})
 
-# @login_required
+@login_required
 def create_blogs(request):
     if request.method == 'POST':
         print('ggggggggggg')
@@ -232,7 +299,7 @@ def create_blogs(request):
         form = BlogForm()
     return render(request, 'admin_page/create_blog.html', {'form': form})
 
-# @login_required
+@login_required
 def update_blog(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
     
@@ -248,6 +315,7 @@ def update_blog(request, blog_id):
     
     return render(request, 'admin_page/edit_blog.html', {'form': form, 'blog': blog})
 
+@login_required
 def delete_blog(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
     if request.method == "POST":
