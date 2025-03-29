@@ -157,3 +157,8 @@ def delete_blog(request, blog_id):
         return redirect('blog_list')  # Adjust to your blog list view name
     return redirect('blog_list')
 
+def profile_view(request):
+    return render(request, 'admin_page/profileview.html')
+
+def profile_update(request):
+    return render(request, 'admin_page/profileupdate.html')

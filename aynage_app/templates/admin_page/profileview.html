@@ -1,0 +1,86 @@
+{% include 'admin_page/navbar.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/profileview.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<div class="profile-header-container">
+    <h1>Admin Profile</h1>
+    <div class="button-container">
+        <button class="theme-toggle" id="themeToggle">
+            <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
+        </button>
+        <a href="{% url 'profile_update' %}" class="btn-primary">Edit Profile</a>
+    </div>
+</div>
+
+<div class="profile-scrollable-container">
+    <div class="profile-content">
+        <div class="profile-image">
+            <img src="{% static 'img/profile.jpg' %}" alt="Admin Profile Picture" class="rounded-circle">
+        </div>
+
+        <div class="profile-details">
+            <div class="detail-group">
+                <h3>Admin Information</h3>
+                <p><strong>Name:</strong> <span id="adminName">ararso</span></p>
+                <p><strong>Email:</strong> <span id="adminEmail">aynage@gmail.com</span></p>
+                <p><strong>Contact:</strong> <span id="adminContact">+1234567890</span></p>
+            </div>
+
+            <div class="detail-group">
+                <h3>Role and Permissions</h3>
+                <p><strong>Role:</strong> <span id="adminRole">Super Admin</span></p>
+                <p><strong>Access Level:</strong> <span id="adminAccess">Full Access</span></p>
+            </div>
+
+            <div class="detail-group">
+                <h3>Security</h3>
+                <p><strong>Last Login:</strong> <span id="lastLogin">2025-03-29 14:30:22</span></p>
+                <p><strong>2FA Status:</strong> <span id="twoFAStatus">Enabled</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/profile.js' %}"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const themeToggle = document.getElementById('themeToggle');
+        const icon = themeToggle.querySelector('i');
+        
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        
+        updateThemeButton(currentTheme);
+        
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            updateThemeButton(newTheme);
+        });
+        
+        function updateThemeButton(theme) {
+            if (theme === 'dark') {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+            }
+        }
+        
+        const profileImage = document.querySelector('.profile-image');
+        const scrollContainer = document.querySelector('.profile-scrollable-container');
+        
+        scrollContainer.addEventListener('scroll', function() {
+            if (this.scrollTop > 50) {
+                profileImage.style.top = '20px';
+            } else {
+                profileImage.style.top = '0';
+            }
+        });
+    });
+</script>
