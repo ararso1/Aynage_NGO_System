@@ -1,0 +1,177 @@
+
+/*  Blog Overview Section */
+
+.content {
+    width: 70%;
+    margin-top: 12vh;
+    margin-left: 150px;
+  }
+  
+  .blog-overview {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+  
+  .overview-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .overview-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card-icon {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 15px;
+  }
+  
+  .overview-card h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  
+  .count {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #444;
+  }
+  
+  @media (max-width: 768px) {
+    .overview-card {
+      width: 45%; 
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .overview-card {
+      width: 100%;
+    }
+  }
+  /* CONTENT*/
+  
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    
+    button {
+      padding: 8px 16px;
+      margin: 10px 0;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    
+    button:hover {
+      background-color: #0056b3;
+    }
+    
+    /* Blog Posts Table */
+    .posts-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .posts-table th, .posts-table td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .posts-table th {
+      background-color: #f1f1f1;
+    }
+    
+    .posts-table td button {
+      margin-right: 10px;
+    }
+    
+  
+  
+  /* Container for chart and header */
+  .blog_chart {
+    padding: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  /* Title Styles */
+  h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Legend for the chart */
+  .legend {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 20px;
+  }
+  
+  /* Canvas Styles */
+  canvas {
+    width: 100% !important;
+    height: 400px;
+  }
+  
+  /* Responsive Layout */
+  @media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 1rem;
+    }
+  }
+  
+  
+  
+  
+    /* Post Editor */
+    .post-editor {
+      margin-top: 30px;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    
+    .post-editor form {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .post-editor label {
+      font-size: 1rem;
+      margin: 10px 0 5px;
+    }
+    
+    .post-editor input, .post-editor select, .post-editor textarea {
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    
+    .post-editor button {
+      width: 200px;
+      align-self: flex-start;
+      margin-top: 20px;
+    }
+    

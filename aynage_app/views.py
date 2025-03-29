@@ -45,6 +45,32 @@ def vacancy_details(request):
 def custom_404(request, exception=None):
     return render(request, '404.html', status=404)
 
+<<<<<<< HEAD
+=======
+
+def dashboard_view(request):
+    return render(request, 'admin_page/dashboard.html')
+
+def blogs_view(request):
+    return render(request, 'admin_page/blogs_post.html')
+
+def vacancy_post_view(request):
+    return render(request, 'admin_page/vacancy_post.html')
+
+def logout_view(request):
+    return render(request, 'admin_page/logout.html')
+
+
+
+
+# Category
+category_list = Category.objects.exclude(status = 2).all()
+context = {
+    'page_title' : 'Simple Blog Site',
+    'category_list' : category_list,
+    'category_list_limited' : category_list[:3]
+}
+>>>>>>> fd99e692ce026c963769eb85cccbdb876d297fca
 
 def admin_dashboard(request):
     blog_count = Blog.objects.count()

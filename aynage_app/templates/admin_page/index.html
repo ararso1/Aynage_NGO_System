@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% include 'admin_page/navbar.html' %}
 {%load static%}
   <div class="app-content">
@@ -298,6 +299,75 @@
 </div>
 <!-- partial -->
   <script  src="{% static 'js/script.js' %}"></script>
+=======
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aynage || Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}" />
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <ul class="sidebar-links">
+            <li><a href="#" id="dashboardLink">Dashboard</a></li>
+            <li><a href="#" id="blogsLink">Blogs</a></li>
+            <li><a href="#" id="vacancyLink">Vacancy</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </div>
+>>>>>>> fd99e692ce026c963769eb85cccbdb876d297fca
 
+    <div class="main-content">
+        <div class="header">
+            <div class="menu-icon" id="menuIcon">&#9776;</div>
+            <div class="greeting"><span class="greeting">Good morning, Aynage</span></div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search..." />
+            </div>
+            <div class="fullscreen"><i id="fullscreenToggle" class="fullscreen-icon">&#x26F6;</i></div>
+            <div class="dark_light"><i id="darkModeToggle" class="dark-light-icon">&#9788;</i></div>
+            <div class="profile">
+                <img src="{% static 'img/download.jpeg' %}" alt="Profile Picture" height="50px" />
+                <span class="text">Aynage</span>
+            </div>
+        </div>
+
+        <div id="vacancyContent" class="content">
+        </div>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/admin.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function loadContent(url) {
+                fetch(url)
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('vacancyContent').innerHTML = data;
+                    });
+            }
+
+            loadContent('{% url "dashboard" %}');
+
+            document.getElementById('dashboardLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                loadContent('{% url "dashboard" %}');
+            });
+
+            document.getElementById('blogsLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                loadContent('{% url "blogs-post" %}');
+            });
+
+            document.getElementById('vacancyLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                loadContent('{% url "vacancy-post" %}');
+            });
+        });
+    </script>
 </body>
 </html>
