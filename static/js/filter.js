@@ -43,12 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div class="project-img" data-type="${item.category}">
                             <img src="${item.image_url}" alt="${item.title}">
                             <div class="overlay">
-                                <h4>${item.title}</h4>
                                 <p>${item.description}</p>
-                                <div class="action-area">
-                                    <a href="#" class="btn">View</a>
-                                    <a href="#" class="btn btn-light">Details</a>
-                                </div>
                             </div>
                         </div>
                     `;

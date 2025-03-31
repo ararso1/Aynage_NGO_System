@@ -8,3 +8,4 @@ admin.site.register(Vacancy)
 admin.site.register(Gallery)
 admin.site.register(Contact)
 admin.site.register(Category)
+

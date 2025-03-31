@@ -68,7 +68,7 @@
         <h1 class="app-content-headerText">Edit Vacancy</h1>
         <form method="POST" id="createBlogForm" action="{% url 'edit_vacancy' vacancy.id %}" enctype="multipart/form-data" class="vacancy-form">
             {% csrf_token %}
-            
+            {{ form.media }}
             <div class="products-row1">
                 <div class="product-cell">
                     <div class="form-group">
@@ -123,10 +123,10 @@
                 <div class="product-cell">
                     <div class="form-group">
                         <label for="description">Description:</label>
-                        <textarea id="description" name="description" rows="4" required>{{ vacancy.description }}</textarea>
+                        {{ form.description }}  <!-- ✅ This will automatically apply CKEditor -->
                     </div>
                 </div>
-            </div>
+            </div> 
 
             <div class="products-row1">
                 <div class="product-cell">
@@ -144,7 +144,7 @@
                         <input type="file" id="banner" name="banner" accept="image/*">
                         {% if vacancy.banner %}
                             <p>Current Image:</p>
-                            <img src="{{ vacancy.banner.url }}" alt="Current Banner" width="100">
+                            <img src="{{ vacancy.banner.url }}" alt="Current Banner" style="width: 150px; height: 120px;">
                         {% endif %}
                     </div>
                 </div>

@@ -43,14 +43,13 @@ def fetch_gallery(request, category):
     return JsonResponse({'gallery': gallery_data})
 
 def blogs(request):
-    blogs = Blog.objects.all().order_by('-created_at')
-
+    blogs = Blog.objects.filter(status=1).order_by('-created_at')
     return render(request, 'blogs.html', {'blogs':blogs})
 
 def blog_details(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
-    top5 = Blog.objects.all().order_by('-created_at')[:5]
-    all_blogs = Blog.objects.all().order_by('-created_at')
+    top5 = Blog.objects.filter(status=1).order_by('-created_at')[:5]
+    all_blogs = Blog.objects.filter(status=1).order_by('-created_at')
 
     # Fetch categories with the count of associated blogs
     categories = Category.objects.annotate(count=Count('blogs')).order_by('-count')
@@ -64,8 +63,8 @@ def blog_details(request, blog_id):
 
 def blog_by_category(request, category_id=None):
     categories = Category.objects.annotate(count=Count('blogs')).order_by('-count')  # Get all categories with post counts
-    all_blogs = Blog.objects.all().order_by('-created_at')
-    top5 = Blog.objects.all().order_by('-created_at')[:5]
+    all_blogs = Blog.objects.filter(status=1).order_by('-created_at')
+    top5 = Blog.objects.filter(status=1).order_by('-created_at')[:5]
 
     if category_id:
         selected_category = get_object_or_404(Category, id=category_id)  # Get the selected category
@@ -196,11 +195,11 @@ def user_login(request):
 
     return render(request, "login.html")  # Render login page if not authenticated
 
-
 def logout_user(request):
     logout(request)  # Logs out the user
     return redirect('login')  # Redirect to the login page
 
+# Admin pages start here
 @login_required
 def admin_dashboard(request):
     blog_count = Blog.objects.count()
@@ -241,7 +240,9 @@ def create_vacancy(request):
     if request.method == "POST":
         form = VacancyForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            vacancy = form.save(commit=False)
+            vacancy.added_by = request.user  # ✅ Assigning the logged-in user
+            vacancy.save()
             
             return redirect('vacancy_list')  # Update with your vacancy list URL name
     else:
@@ -284,12 +285,10 @@ def blog_list(request):
 @login_required
 def create_blogs(request):
     if request.method == 'POST':
-        print('ggggggggggg')
         form = BlogForm(request.POST, request.FILES)
         if form.is_valid():
-            print('kkkkkkkkkkkkkkkkk')
-            # blog = form.save(commit=False)
-            # blog.added_by = request.user  # Set the user who created the blog
+            blog = form.save(commit=False)
+            blog.added_by = request.user  # Set the user who created the blog
             # blog.updated_by = request.user
             form.save()
             return redirect('blog_list')
@@ -307,8 +306,9 @@ def update_blog(request, blog_id):
         form = BlogForm(request.POST, request.FILES, instance=blog)
         if form.is_valid():
             blog = form.save(commit=False)
-            # blog.updated_by = request.user  # Set the user who last updated the blog
+            blog.updated_by = request.user  # Set the user who last updated the blog
             blog.save()
+            form.save_m2m() 
             return redirect('blog_list')
     else:
         form = BlogForm(instance=blog)

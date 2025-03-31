@@ -172,7 +172,8 @@
       </div>
       
       <div class="cards-container">
-        <div class="card card-blogs">
+        <a href="{% url 'blog_list' %}" style="text-decoration: none;">
+          <div class="card card-blogs">
             <div class="card-icon">
                 <i class="fas fa-blog"></i>
             </div>
@@ -186,9 +187,11 @@
                     Last updated: No updates yet
                 {% endif %}
             </div>
-        </div>
+          </div>
+        </a>
     
-        <div class="card card-vacancies">
+        <a href="{% url 'vacancy_list' %}" style="text-decoration: none;">
+          <div class="card card-vacancies">
             <div class="card-icon">
                 <i class="fas fa-briefcase"></i>
             </div>
@@ -202,7 +205,8 @@
                     Last updated: No updates yet
                 {% endif %}
             </div>
-        </div>    
+          </div>   
+        </a>
       </div>
     
       

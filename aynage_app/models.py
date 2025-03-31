@@ -26,7 +26,7 @@ class User(AbstractUser):
     
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
-
+    
     def __str__(self):
         return self.name
 
@@ -53,12 +53,17 @@ class Blog(models.Model):
 
 class Gallery(models.Model):
     CATEGORY_CHOICES = [
-        ('certifications', 'Certifications and Banners'),
+        ('certifications', 'Certifications'),
+        ('early_child_development', 'Early Child Development'),
+        ('basic_educations', 'Basic Education'),
+        ('youth_Development', 'Youth Development'),
+        ('community_empowerment', 'Community Empowerment'),
     ]
 
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES)
     img = models.ImageField(upload_to='gallery/')
     description = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     
     def __str__(self):
         return self.category
@@ -79,9 +84,9 @@ class Vacancy(models.Model):
     department = models.CharField(max_length=250, default="General")
     experience = models.CharField(max_length=100, blank=True, null=True)
     job_type = models.CharField(max_length=20, default='full_time', choices=JOB_TYPE_CHOICES)
-    description = models.TextField(blank=True, null=True)
+    description = RichTextField()
     location = models.CharField(max_length=255, default='Silte')
-    salary = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    salary = models.CharField(max_length=200, blank=True, null=True)
     banner = models.ImageField(upload_to='images/', blank=True, null=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
     deadline = models.DateField(default=timezone.now)

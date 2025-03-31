@@ -1,5 +1,6 @@
 from django import forms
 from .models import *
+from ckeditor.widgets import CKEditorWidget
 
 class BlogForm(forms.ModelForm):
     categories = forms.ModelMultipleChoiceField(
@@ -17,6 +18,7 @@ class BlogForm(forms.ModelForm):
 
 
 class VacancyForm(forms.ModelForm):
+    description = forms.CharField(widget=CKEditorWidget())
     class Meta:
         model = Vacancy
         fields = [

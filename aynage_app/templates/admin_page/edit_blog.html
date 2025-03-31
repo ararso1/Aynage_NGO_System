@@ -63,70 +63,73 @@
         </div>
     </div>
 
-    <!-- Blog Form Section -->
+    {% load static %}
+
+    <!-- Blog Edit Form Section -->
     <div class="products-area-wrapper tableView">
         <h1 class="app-content-headerText">Edit Blog</h1>
+    
         <form method="POST" id="createBlogForm" action="{% url 'edit_blog' blog.id %}" enctype="multipart/form-data" class="blog-form">
             {% csrf_token %}
-            
+            {{ form.media }}  <!-- Load CKEditor scripts -->
+    
+            <!-- Title Field -->
             <div class="products-row1">
                 <div class="product-cell">
                     <div class="form-group">
-                        <label for="title">Title:</label>
-                        <input type="text" id="title" name="title" value="{{ blog.title }}" required>
+                        <label for="id_title">Title:</label>
+                        {{ form.title }}
                     </div>
                 </div>
             </div>
-
+    
+            <!-- Category Checkboxes -->
             <div class="products-row1">
                 <div class="product-cell">
                     <div class="form-group">
-                        <label for="category">Category</label>
-                        <select id="category" name="category" required>
-                            <option value="">Choose..</option>
-                            <option value="tech" {% if blog.category == "tech" %}selected{% endif %}>Technology</option>
-                            <option value="fashion" {% if blog.category == "fashion" %}selected{% endif %}>Fashion</option>
-                            <option value="help" {% if blog.category == "help" %}selected{% endif %}>Help</option>
-                            <option value="ngo" {% if blog.category == "ngo" %}selected{% endif %}>NGO</option>
-                        </select>
+                        <label>Categories:</label>
+                        <div>
+                            {{ form.categories }}
+                        </div>
                     </div>
                 </div>
             </div>
-
+    
+            <!-- Rich Text Description -->
             <div class="products-row1">
                 <div class="product-cell">
                     <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea id="description" name="description" rows="4" required>{{ blog.description }}</textarea>
+                        <label for="id_description">Description</label>
+                        {{ form.description }}  <!-- CKEditor will be applied -->
                     </div>
                 </div>
             </div>
-
+    
+            <!-- Status Dropdown -->
             <div class="products-row1">
                 <div class="product-cell">
                     <div class="form-group">
-                        <label for="status">Status</label>
-                        <select id="status" name="status" required>
-                            <option value="1" {% if blog.status %}selected{% endif %}>Published</option>
-                            <option value="0" {% if not blog.status %}selected{% endif %}>Unpublished</option>
-                        </select>
+                        <label for="id_status">Status</label>
+                        {{ form.status }}
                     </div>
                 </div>
             </div>
-
+    
+            <!-- Image Upload & Preview -->
             <div class="products-row1">
                 <div class="product-cell">
                     <div class="form-group">
-                        <label for="image">Image</label>
-                        <input type="file" id="image" name="banner" accept="image/*">
+                        <label for="id_banner">Image</label>
+                        {{ form.banner }}
                         {% if blog.banner %}
                             <p>Current Image:</p>
-                            <img src="{{ blog.banner.url }}" alt="{{ blog.title }}" style="width: 150px; height: 150px;">
+                            <img src="{{ blog.banner.url }}" alt="{{ blog.title }}" style="width: 150px; height: 120px;">
                         {% endif %}
                     </div>
                 </div>
             </div>
-
+    
+            <!-- Submit Button -->
             <div class="products-row1">
                 <div class="product-cell">
                     <div class="form-group">
@@ -136,6 +139,7 @@
             </div>
         </form>
     </div>
+    
     <!-- Success Confirmation Modal -->
     <div id="successModal" class="modall">
         <div class="modal-content">

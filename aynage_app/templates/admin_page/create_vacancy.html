@@ -66,9 +66,9 @@
     <!-- Vacancy Form Section -->
     <div class="products-area-wrapper tableView">
         <h1 class="app-content-headerText">Add New Vacancy</h1>
-        <form method="POST" id="createBlogForm" action="{% url 'create_vacancy' %}" enctype="multipart/form-data" class="vacancy-form">
+        <form method="POST" id="createVacancyForm" action="{% url 'create_vacancy' %}" enctype="multipart/form-data" class="vacancy-form">
             {% csrf_token %}
-            
+            {{ form.media }}
             <div class="products-row1">
                 <div class="product-cell">
                     <div class="form-group">
@@ -123,10 +123,10 @@
                 <div class="product-cell">
                     <div class="form-group">
                         <label for="description">Description:</label>
-                        <textarea id="description" name="description" rows="4" required></textarea>
+                        {{ form.description }}  <!-- ✅ This will automatically apply CKEditor -->
                     </div>
                 </div>
-            </div>
+            </div>           
 
             <div class="products-row1">
                 <div class="product-cell">
@@ -151,6 +151,7 @@
                     <div class="form-group">
                         <label for="status">Status:</label>
                         <select id="status" name="status" required>
+                            <option value="">Choose...</option>
                             <option value="1">Published</option>
                             <option value="0">Unpublished</option>
                         </select>
@@ -182,7 +183,7 @@
         <div class="modal-content">
             <h3>Vacancy Created Successfully!</h3>
             <p>Your vacancy has been created. Redirecting to the vacancy list...</p>
-            <button onclick="redirectToBlogList()">Okay</button>
+            <button onclick="redirectToVacancyList()">Okay</button>
         </div>
     </div>
 
@@ -336,36 +337,48 @@
     }
 </style>
 
-<!-- JavaScript to handle modal and redirection -->
+<!-- JavaScript to handle form submission and modal -->
 <script>
-    // Show the success modal after the form is submitted successfully
-    const form = document.getElementById("createBlogForm");
+    const form = document.getElementById("createVacancyForm");
     const successModal = document.getElementById("successModal");
 
     form.onsubmit = async function (event) {
-        event.preventDefault(); // Prevent the form from submitting immediately
+        event.preventDefault(); // Prevent default form submission
 
-        // Submit the form via AJAX
-        const formData = new FormData(form);
-        const response = await fetch(form.action, {
-            method: 'POST',
-            body: formData
-        });
-
-        if (response.ok) {
-            // Show success modal after successful submission
-            successModal.style.display = "flex";
-
-            // Wait for the user to click "Okay" to redirect
-        } else {
-            // Handle error if necessary
-            alert("Error creating Vacancy. Please try again.");
+        // Sync CKEditor data before sending the form
+        for (var instance in CKEDITOR.instances) {
+            CKEDITOR.instances[instance].updateElement();
         }
-    }
 
-    // Redirect to the blog list page after clicking "Okay" on the success modal
-    function redirectToBlogList() {
-        window.location.href = "{% url 'vacancy_list' %}"; // Replace with actual URL to the blog list page
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                // Show success modal
+                successModal.style.display = "flex";
+
+                // Redirect after 3 seconds
+                setTimeout(() => {
+                    redirectToVacancyList();
+                }, 3000);
+            } else {
+                const responseData = await response.text();
+                console.error("Error response:", responseData);
+                alert("Error creating vacancy. Please check your input and try again.");
+            }
+        } catch (error) {
+            console.error("Fetch error:", error);
+            alert("An unexpected error occurred. Please try again.");
+        }
+    };
+
+    function redirectToVacancyList() {
+        window.location.href = "{% url 'vacancy_list' %}"; // Update with the correct vacancy list URL
     }
 </script>
 <script src="{% static 'js/script.js' %}"></script>
