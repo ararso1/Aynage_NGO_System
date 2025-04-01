@@ -23,5 +23,5 @@ class VacancyForm(forms.ModelForm):
         model = Vacancy
         fields = [
             'title', 'department', 'experience', 'job_type', 'description',
-            'location', 'salary', 'banner', 'status', 'deadline'
+            'location', 'salary', 'banner', 'status', 'link', 'deadline'
         ]

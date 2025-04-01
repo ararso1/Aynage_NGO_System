@@ -55,7 +55,7 @@
                                         <img src="{{top.banner.url}}" />
                                     </div>
                                     <div class="post-text">
-                                        <a href="">{{top.title}}</a>
+                                        <a href="{% url 'blog_details' top.id %}">{{top.title}}</a>
                                         <div class="post-meta">
                                             <p>By<a href="">Aynage</a></p>
                                             <p>In
@@ -155,7 +155,7 @@
                                             <img src="{{top.banner.url}}" />
                                         </div>
                                         <div class="post-text">
-                                            <a href="">{{top.title}}</a>
+                                            <a href="{% url 'blog_details' top.id %}">{{top.title}}</a>
                                             <div class="post-meta">
                                                 <p>By<a href="">Aynage</a></p>
                                                 <p>In

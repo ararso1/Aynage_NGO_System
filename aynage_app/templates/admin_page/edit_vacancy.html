@@ -99,6 +99,15 @@
             <div class="products-row1">
                 <div class="product-cell">
                     <div class="form-group">
+                        <label for="experience">Number of Position:</label>
+                        <input type="text" id="experience" name="position" value="{{ vacancy.position }}" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="products-row1">
+                <div class="product-cell">
+                    <div class="form-group">
                         <label for="job_type">Job Type:</label>
                         <select id="job_type" name="job_type" required>
                             <option value="" disabled>Choose...</option>
@@ -158,6 +167,15 @@
                             <option value="1" {% if vacancy.status == 1 %}selected{% endif %}>Published</option>
                             <option value="0" {% if vacancy.status == 0 %}selected{% endif %}>Unpublished</option>
                         </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="products-row1">
+                <div class="product-cell">
+                    <div class="form-group">
+                        <label for="deadline">Application Submission Form Link:</label>
+                        <input type="text" id="link" name="link" value="{{vacancy.link}}" required>
                     </div>
                 </div>
             </div>

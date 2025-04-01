@@ -26,12 +26,12 @@
             {% for vacancy in vac %}
             <div class="col-md-4">
                 <div class="card border-0 shadow-sm">
-                    <img class="card-img-top" src="{% static 'img/vacancy-1.jpg' %}" alt="Job Position 1">
+                    <img class="card-img-top" src="{{vacancy.banner.url}}" alt="Job Position 1">
                     <div class="card-body">
-                        <h5 class="card-title">{{vacancy.title}} {{vacancy.id}}</h5>
+                        <h5 class="card-title">{{vacancy.title}}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Location: {{vacancy.location}}</h6>
                         <p class="card-text">Experience: {{vacancy.experience}}+ years in relevant field.</p>
-                        <p class="card-text">{{vacancy.description|truncatechars:50 }}</p>
+                        <p class="card-text">{{vacancy.description|truncatechars:50|safe }}</p>
                         <p class="card-text"><strong>Publisher:</strong> Aynage Child and Family Development Organization</p>
                         <a href="{% url 'vacancy_details' vacancy.id %}" class="btn btn-primary">See Details</a>
                     </div>

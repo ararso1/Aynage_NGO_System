@@ -108,7 +108,7 @@
 
                         </div>
                         <div class="position-relative mt-auto">
-                            <img class="img-fluid" src="{% static 'img/courses-2.jpg' %}" alt="">
+                            <img class="img-fluid" src="{% static 'img/basicedu.jpg' %}" alt="">
                             <div class="causes-overlay">
                                 <a class="btn btn-outline-primary" href="{% url 'gallery' %}">
                                     Our Gallery
@@ -131,7 +131,7 @@
 
                         </div>
                         <div class="position-relative mt-auto">
-                            <img class="img-fluid" src="{% static 'img/courses-3.jpg' %}" alt="">
+                            <img class="img-fluid" src="{% static 'img/youthdevt.jpg' %}" alt="">
                             <div class="causes-overlay">
                                 <a class="btn btn-outline-primary" href="{% url 'gallery' %}">
                                     Our Gallery
@@ -156,7 +156,7 @@
                             <p>Personalized child-sponsor connections. Regular progress reporting and updates. Community-based communication platforms..</p>
                         </div>
                         <div class="position-relative mt-auto">
-                            <img class="img-fluid" src="{% static 'img/courses-1.jpg' %}" alt="">
+                            <img class="img-fluid" src="{% static 'img/Preschool.jpg' %}" alt="">
                             <div class="causes-overlay">
                                 <a class="btn btn-outline-primary" href="{% url 'gallery' %}">
                                     Our Gallery
@@ -179,7 +179,7 @@
 
                         </div>
                         <div class="position-relative mt-auto">
-                            <img class="img-fluid" src="{% static 'img/courses-2.jpg' %}" alt="">
+                            <img class="img-fluid" src="{% static 'img/modelm.jpg' %}" alt="">
                             <div class="causes-overlay">
                                 <a class="btn btn-outline-primary" href="{% url 'gallery' %}">
                                     Our Gallery
@@ -202,7 +202,7 @@
 
                         </div>
                         <div class="position-relative mt-auto">
-                            <img class="img-fluid" src="{% static 'img/courses-3.jpg' %}" alt="">
+                            <img class="img-fluid" src="{% static 'img/pedatric.jpg' %}" alt="">
                             <div class="causes-overlay">
                                 <a class="btn btn-outline-primary" href="{% url 'gallery' %}">
                                     Our Gallery
@@ -243,98 +243,6 @@
         </div>
     </section>
     
-<style>
-    .blog1 {
-        position: relative;
-        width: 100%;
-        padding: 45px 0 15px 0;
-    }
-    
-    .blog1 .blog-item {
-        margin-bottom: 30px;
-        padding-bottom: 30px;
-        background: #f3f6ff;
-    }
-    
-    .blog1 .blog-img {
-        width: 100%;
-    }
-    
-    .blog1 .blog-img img {
-        width: 100%;
-    }
-    
-    .blog1 .blog-text {
-        padding: 30px 30px 15px 30px;
-    }
-    
-    .blog1 .blog-text h3 {
-        font-size: 22px;
-        font-weight: 700;
-    }
-    
-    .blog1 .blog-text h3 a {
-        color: #4a4c70;
-    }
-    
-    .blog1 .blog-text h3 a:hover {
-        color: #FDBE33;
-    }
-    
-    .blog1 .blog-text p {
-        margin: 0;
-    }
-    
-    .blog1 .blog-meta {
-        margin: 0 30px;
-        padding-top: 15px;
-        display: flex;
-        border-top: 1px solid rgba(0, 0, 0, .15);
-    }
-    
-    .blog1 .blog-meta p {
-        margin: 0;
-        color: #777777;
-        padding: 0 30px;
-        border-right: 1px solid rgba(0, 0, 0, .15);
-    }
-    
-    .blog1 .blog-meta p:first-child {
-        padding-left: 0;
-    }
-    
-    .blog1 .blog-meta p:last-child {
-        padding-right: 0;
-        border: none;
-    }
-    
-    .blog1 .blog-meta i {
-        color: #4a4c70;
-        margin-right: 8px
-    }
-    
-    .blog1 .pagination {
-        margin-bottom: 15px;
-    }
-    
-    .blog1 .pagination .page-link {
-        color: #4a4c70;
-        border-radius: 0;
-        border-color: #4a4c70;
-    }
-    
-    .blog1 .pagination .page-link:hover,
-    .blog1 .pagination .page-item.active .page-link {
-        color: #FDBE33;
-        background: #4a4c70;
-    }
-    
-    .blog1 .pagination .disabled .page-link {
-        color: #999999;
-    }
-    
-    
-        </style>
             <!-- Blog Start -->
             <div class="blog1" style="margin-top: 50px;">
                 <div class="container">
@@ -343,15 +251,16 @@
                         <h1 class="display-6 mb-5">See Our Latest news & articles</h1>
                     </div>
                     <div class="row">
+                        {% for blog in blogs %}
                         <div class="col-lg-4">
                             <div class="blog-item">
                                 <div class="blog-img">
-                                    <img src="{% static 'img/blog-1.jpg' %}" alt="Image">
+                                    <img src="{{blog.banner.url}}" alt="Image">
                                 </div>
                                 <div class="blog-text">
-                                    <h3><a href="#">📌 Empowering Communities Through Education</a></h3>
+                                    <h3><a href="{% url 'blog_details' blog.id %}">📌 {{blog.title}}</a></h3>
                                     <p>
-                                        Discover how our education initiatives are transforming lives and creating brighter futures.
+                                        {{blog.description|safe|truncatechars:150}}
                                     </p>
                                 </div>
                                 <div class="blog-meta">
@@ -360,97 +269,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="blog-item">
-                                <div class="blog-img">
-                                    <img src="{% static 'img/blog-2.jpg' %}" alt="Image">
-                                </div>
-                                <div class="blog-text">
-                                    <h3><a href="#">📌 Providing Clean Water for a Healthier Tomorrow</a></h3>
-                                    <p>
-                                        Learn about our latest water projects and how access to clean water is changing communities.
-                                    </p>
-                                </div>
-                                <div class="blog-meta">
-                                    <p><i class="fa fa-user"></i><a href="">Admin</a></p>
-                                    <p><i class="fa fa-comments"></i><a href="">15 Comments</a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="blog-item">
-                                <div class="blog-img">
-                                    <img src="{% static 'img/blog-3.jpg' %}" alt="Image">
-                                </div>
-                                <div class="blog-text">
-                                    <h3><a href="#">📌 Supporting Vulnerable Families with Essential Aid</a></h3>
-                                    <p>
-                                        See how our relief programs are making a difference for families in need.
-                                    </p>
-                                </div>
-                                <div class="blog-meta">
-                                    <p><i class="fa fa-user"></i><a href="">Admin</a></p>
-                                    <p><i class="fa fa-comments"></i><a href="">15 Comments</a></p>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
             <!-- Blog End -->
-    
-<!-- <script>
-    document.addEventListener("DOMContentLoaded", function () {
-    const galleryContainer = document.getElementById("gallery-container");
-    const filterButtons = document.querySelectorAll(".item-link");
-
-    function fetchGallery(category) {
-        fetch(`/gallery/fetch/${category}/`)
-            .then(response => response.json())
-            .then(data => {
-                galleryContainer.innerHTML = ""; // Clear existing images
-                
-                if (data.gallery.length === 0) {
-                    galleryContainer.innerHTML = "<p>No images available.</p>";
-                    return;
-                }
-
-                data.gallery.forEach(item => {
-                    const galleryItem = `
-                        <div class="project-img" data-type="${item.category}">
-                            <img src="${item.image_url}" alt="gallary image">
-                            <div class="overlay">
-                                <p>${item.description} hhhhhhhhhhhhhh</p>
-                            </div>
-                        </div>
-                    `;
-                    galleryContainer.innerHTML += galleryItem;
-                });
-            })
-            .catch(error => console.error("Error fetching gallery:", error));
-    }
-
-    // Add event listener to each filter button
-    filterButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            let category = this.getAttribute("data-filter");
-            
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove("menu-active"));
-            
-            // Add active class to the clicked button
-            this.classList.add("menu-active");
-
-            // Fetch new gallery items
-            fetchGallery(category);
-        });
-    });
-
-    // Fetch all images initially
-    fetchGallery("all");
-});
-
-</script>
- -->
 
     {% include 'components/footer.html' %}

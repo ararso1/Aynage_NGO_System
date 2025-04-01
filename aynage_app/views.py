@@ -14,7 +14,8 @@ from django.db.models import Count
 # Create your views here.
 
 def home(request):
-    return render(request, 'index.html')
+    blogs = Blog.objects.filter(status=1).order_by('-created_at')[:3]
+    return render(request, 'index.html', {'blogs':blogs})
 
 def about(request, category=None):
     if category:
@@ -154,7 +155,8 @@ def climate(request):
     return render(request, 'climate.html')
 
 def our_work(request):
-    return render(request, 'our_work.html')
+    blogs = Blog.objects.filter(status=1).order_by('-created_at')[:3]
+    return render(request, 'our_work.html', {"blogs":blogs})
 
 def why_donate(request):
     return render(request, 'why_donate.html')

@@ -36,7 +36,7 @@ class Blog(models.Model):
         (0, 'Unpublished'),
     ]
 
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, unique=True)
     categories = models.ManyToManyField(Category, related_name='blogs')
     description = RichTextField()
     status = models.IntegerField(choices=STATUS_CHOICES)
@@ -80,15 +80,17 @@ class Vacancy(models.Model):
         (0, 'Unpublished'),
     ]
 
-    title = models.CharField(max_length=250)
+    title = models.CharField(max_length=250, unique=True)
     department = models.CharField(max_length=250, default="General")
     experience = models.CharField(max_length=100, blank=True, null=True)
+    # position = models.CharField(max_length=100, blank=True, null=True)
     job_type = models.CharField(max_length=20, default='full_time', choices=JOB_TYPE_CHOICES)
     description = RichTextField()
     location = models.CharField(max_length=255, default='Silte')
     salary = models.CharField(max_length=200, blank=True, null=True)
     banner = models.ImageField(upload_to='images/', blank=True, null=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
+    link = models.CharField(max_length=2000, blank=True, null=True)
     deadline = models.DateField(default=timezone.now)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
