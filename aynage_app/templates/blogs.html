@@ -29,9 +29,9 @@
                                 <img src="{{blog.banner.url}}" alt="Image">
                             </div>
                             <div class="blog-text">
-                                <h3><a href="{% url 'blog_details' blog.id %}">{{blog.title}}</a></h3>
+                                <h3><a href="{% url 'blog_details' blog.id %}">{{blog.title|truncatechars:50}}</a></h3>
                                 <p>
-                                    {{blog.description|safe|truncatechars:150}}
+                                    {{blog.description|safe|truncatechars:60}}
                                 </p>
                             </div>
                             <div class="blog-meta">
@@ -41,7 +41,6 @@
                         </div>
                     </div>
                     {% endfor %}
-
                 </div>
             </div>
         </div>

@@ -8,7 +8,7 @@ class BlogForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple,
         required=True    
     )
-
+    
     class Meta:
         model = Blog
         fields = ['title', 'categories', 'description', 'status', 'banner']
@@ -22,6 +22,6 @@ class VacancyForm(forms.ModelForm):
     class Meta:
         model = Vacancy
         fields = [
-            'title', 'department', 'experience', 'job_type', 'description',
+            'title', 'department', 'experience', 'position','job_type', 'description',
             'location', 'salary', 'banner', 'status', 'link', 'deadline'
         ]

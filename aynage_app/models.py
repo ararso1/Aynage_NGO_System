@@ -83,7 +83,7 @@ class Vacancy(models.Model):
     title = models.CharField(max_length=250, unique=True)
     department = models.CharField(max_length=250, default="General")
     experience = models.CharField(max_length=100, blank=True, null=True)
-    # position = models.CharField(max_length=100, blank=True, null=True)
+    position = models.CharField(max_length=100, blank=True, null=True)
     job_type = models.CharField(max_length=20, default='full_time', choices=JOB_TYPE_CHOICES)
     description = RichTextField()
     location = models.CharField(max_length=255, default='Silte')

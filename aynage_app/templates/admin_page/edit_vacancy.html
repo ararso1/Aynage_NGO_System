@@ -365,6 +365,13 @@
     form.onsubmit = async function (event) {
         event.preventDefault(); // Prevent the form from submitting immediately
 
+        // Ensure CKEditor updates textarea content
+        if (typeof CKEDITOR !== 'undefined') {
+            for (let instance in CKEDITOR.instances) {
+                CKEDITOR.instances[instance].updateElement();
+            }
+        }
+        
         // Submit the form via AJAX
         const formData = new FormData(form);
         const response = await fetch(form.action, {
