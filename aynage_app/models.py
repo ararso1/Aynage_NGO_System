@@ -6,8 +6,9 @@ from ckeditor.fields import RichTextField
 # Create your models here.
 
 class User(AbstractUser):
-    gender = models.CharField(max_length=10, null=True, blank=True)
+
     phone = models.CharField(max_length=15, null=True, blank=True)
+    address = models.CharField(max_length=200, null=True, blank=True)
     photo = models.ImageField(upload_to='images/', null=True, blank=True)
     created_at = models.DateField(auto_now_add=True)
             
@@ -110,3 +111,13 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"Message from {self.name} - {self.subject}"
+
+class Comment(models.Model):
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name="comments")
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Comment by {self.name} on {self.blog.title}"

@@ -26,7 +26,8 @@ urlpatterns = [
     # Admin panel
     path('login/', views.user_login, name='login'),
     path('logout/', views.logout_user, name='logout'),
-    # path('category_mgt',views.category_mgt,name='category-mgt'),
+    path("password-reset/", views.password_reset_request, name="password_reset_request"),
+    path("reset-password/<uidb64>/<token>/", views.password_reset_confirm, name="password_reset_confirm"),
     # path('manage_category',views.manage_category,name='manage-category'),
     # path('categories',views.categories,name='category-page'),
     path('admin_dashboard',views.admin_dashboard, name='admin_panel'),
@@ -38,5 +39,9 @@ urlpatterns = [
     path('delete_blog/<int:blog_id>/', views.delete_blog, name='delete_blog'),
     path('edit_vacancy/<int:vacancy_id>/', views.update_vacancy, name='edit_vacancy'),
     path('delete_vacancy/<int:vacancy_id>/', views.delete_vacancy, name='delete_vacancy'),
+
+    path('admin_page/profile', views.profile, name='profile'),
+    path('admin_page/edit_profile', views.profile_edit, name='profile_edit')
+
 
 ]

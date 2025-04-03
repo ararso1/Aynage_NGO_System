@@ -25,3 +25,16 @@ class VacancyForm(forms.ModelForm):
             'title', 'department', 'experience', 'position','job_type', 'description',
             'location', 'salary', 'banner', 'status', 'link', 'deadline'
         ]
+
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'phone', 'address', 'photo']
+        widgets = {
+            'photo': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
+        }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ["name", "email", "message"]

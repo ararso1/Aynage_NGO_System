@@ -10,6 +10,13 @@ from django.conf import settings
 from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
 from django.db.models import Count
+from django.contrib.auth.views import PasswordResetView
+from django.urls import reverse_lazy
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes
+
 
 # Create your views here.
 
@@ -51,15 +58,27 @@ def blog_details(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
     top5 = Blog.objects.filter(status=1).order_by('-created_at')[:5]
     all_blogs = Blog.objects.filter(status=1).order_by('-created_at')
-
-    # Fetch categories with the count of associated blogs
     categories = Category.objects.annotate(count=Count('blogs')).order_by('-count')
+    comments = blog.comments.all().order_by('-created_at')[:3] 
+
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.blog = blog  # Associate the comment with the blog
+            comment.save()
+            return redirect("blog_details", blog_id=blog.id)  # Refresh the page
+
+    else:
+        form = CommentForm()
 
     return render(request, 'blog_details.html', {
         'blog': blog,
-        'all_blogs':all_blogs,
+        'all_blogs': all_blogs,
         'top5': top5,
-        'categories': categories
+        'categories': categories,
+        'comments': comments,
+        'form': form
     })
 
 def blog_by_category(request, category_id=None):
@@ -180,29 +199,86 @@ def custom_404(request, exception=None):
 
 
 def user_login(request):
-    if request.user.is_authenticated:  # Check if the user is already logged in
-        return redirect("admin_panel")  # Redirect to dashboard
+    if request.user.is_authenticated:
+        return redirect("admin_panel")  
 
     if request.method == "POST":
         email = request.POST.get("email")
         password = request.POST.get("password")
 
-        user = authenticate(request, username=email, password=password)
+        try:
+            user = User.objects.get(email=email)
+            user = authenticate(request, username=user.username, password=password)
+        except User.DoesNotExist:
+            user = None
 
         if user is not None:
             login(request, user)
-            return redirect("admin_panel")  # Redirect to dashboard
+            return redirect("admin_panel")  
         else:
             messages.error(request, "Invalid email or password.")
 
-    return render(request, "login.html")  # Render login page if not authenticated
+    return render(request, "login.html")
+
+
+def password_reset_request(request):
+    if request.method == "POST":
+        form = PasswordResetForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data["email"]
+            associated_users = User.objects.filter(email=email)
+            if associated_users.exists():
+                user = associated_users.first()
+                token = default_token_generator.make_token(user)
+                uid = urlsafe_base64_encode(force_bytes(user.pk))
+                reset_url = f"{settings.SITE_URL}/reset-password/{uid}/{token}/"
+
+                send_mail(
+                    subject="Password Reset Request",
+                    message=f"Click the link below to reset your password:\n\n{reset_url}",
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=[email],
+                )
+                
+                messages.success(request, "A reset link has been sent to your email.")
+                return redirect("login")
+            else:
+                messages.error(request, "No account found with this email.")
+    else:
+        form = PasswordResetForm()
+
+    return render(request, "password_reset.html", {"form": form})
+
+def password_reset_confirm(request, uidb64, token):
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = get_object_or_404(User, pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        if request.method == "POST":
+            form = SetPasswordForm(user, request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Your password has been reset successfully!")
+                return redirect("login")
+        else:
+            form = SetPasswordForm(user)
+
+        return render(request, "password_reset_email.html", {"form": form})
+
+    else:
+        messages.error(request, "Invalid or expired password reset link.")
+        return redirect("password_reset_request")
+
 
 def logout_user(request):
     logout(request)  # Logs out the user
-    return redirect('login')  # Redirect to the login page
+    return redirect('home')  # Redirect to the login page
 
 # Admin pages start here
-@login_required
+@login_required(login_url='/login/')
 def admin_dashboard(request):
     blog_count = Blog.objects.count()
     vacancy_count = Vacancy.objects.count()
@@ -232,12 +308,12 @@ def admin_dashboard(request):
 
 
 # vacancy part
-@login_required
+@login_required(login_url='/login/')
 def vacancy_list(request):
     vacancies = Vacancy.objects.all().order_by('-created_at') 
     return render(request, 'admin_page/vacancy_list.html', {'vacancies':vacancies})
 
-@login_required
+@login_required(login_url='/login/')
 def create_vacancy(request):
     if request.method == "POST":
         form = VacancyForm(request.POST, request.FILES)
@@ -253,7 +329,7 @@ def create_vacancy(request):
     return render(request, 'admin_page/create_vacancy.html', {'form': form})
 
 
-@login_required
+@login_required(login_url='/login/')
 def update_vacancy(request, vacancy_id):
     vacancy = get_object_or_404(Vacancy, id=vacancy_id)
     
@@ -269,7 +345,7 @@ def update_vacancy(request, vacancy_id):
     
     return render(request, 'admin_page/edit_vacancy.html', {'form': form, 'vacancy': vacancy})
 
-@login_required
+@login_required(login_url='/login/')
 def delete_vacancy(request, vacancy_id):
     vacancy = get_object_or_404(Vacancy, id=vacancy_id)
     if request.method == "POST":
@@ -279,12 +355,12 @@ def delete_vacancy(request, vacancy_id):
 
 
 # blog part
-@login_required
+@login_required(login_url='/login/')
 def blog_list(request):
     blogs = Blog.objects.all().order_by('-created_at')  # Fetch blogs ordered by newest first
     return render(request, 'admin_page/blog_list.html', {'blogs': blogs})
 
-@login_required
+@login_required(login_url='/login/')
 def create_blogs(request):
     if request.method == 'POST':
         form = BlogForm(request.POST, request.FILES)
@@ -300,7 +376,7 @@ def create_blogs(request):
         form = BlogForm()
     return render(request, 'admin_page/create_blog.html', {'form': form})
 
-@login_required
+@login_required(login_url='/login/')
 def update_blog(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
     
@@ -317,7 +393,7 @@ def update_blog(request, blog_id):
     
     return render(request, 'admin_page/edit_blog.html', {'form': form, 'blog': blog})
 
-@login_required
+@login_required(login_url='/login/')
 def delete_blog(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
     if request.method == "POST":
@@ -325,3 +401,18 @@ def delete_blog(request, blog_id):
         return redirect('blog_list')  # Adjust to your blog list view name
     return redirect('blog_list')
 
+@login_required(login_url='/login/')
+def profile(request):
+    return render(request, 'admin_page/profile.html')
+
+@login_required(login_url='/login/')
+def profile_edit(request):
+    if request.method == 'POST':
+        form = ProfileEditForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # Redirect to the same page after saving
+    else:
+        form = ProfileEditForm(instance=request.user)
+    
+    return render(request, 'admin_page/profile_edit.html', {'form': form})
