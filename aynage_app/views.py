@@ -207,8 +207,7 @@ def user_login(request):
         password = request.POST.get("password")
 
         try:
-            user = User.objects.get(email=email)
-            user = authenticate(request, username=user.username, password=password)
+            user = authenticate(request, username=email, password=password)
         except User.DoesNotExist:
             user = None
 
