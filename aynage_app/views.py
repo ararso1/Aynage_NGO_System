@@ -186,5 +186,23 @@ def delete_blog(request, blog_id):
 def profile_view(request):
     return render(request, 'admin_page/profileview.html')
 
+<<<<<<< Updated upstream
+=======
+@login_required(login_url='/login/')
+def profile_edit(request):
+    if request.method == 'POST':
+        form = ProfileEditForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # Redirect to the same page after saving
+    else:
+        form = ProfileEditForm(instance=request.user)
+    
+    return render(request, 'admin_page/profile_edit.html', {'form': form})
+
+def profile_view(request):
+    return render(request, 'admin_page/profileview.html')
+
+>>>>>>> Stashed changes
 def profile_update(request):
     return render(request, 'admin_page/profileupdate.html')

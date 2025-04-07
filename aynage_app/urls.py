@@ -34,7 +34,14 @@ urlpatterns = [
      path('profile/', views.profile_view, name='profile_view'),
     path('profile/update/', views.profile_update, name='profile_update'),
 
+<<<<<<< Updated upstream
 ]
+=======
+    path('admin_page/profile', views.profile, name='profile'),
+    path('admin_page/edit_profile', views.profile_edit, name='profile_edit'),
+    path('profile/', views.profile_view, name='profile_view'),
+    path('profile/update/', views.profile_update, name='profile_update')
+>>>>>>> Stashed changes
 
 
 
