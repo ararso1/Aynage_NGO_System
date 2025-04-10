@@ -74,6 +74,9 @@
                     <div class="form-group">
                         <label for="title">Title:</label>
                         <input type="text" id="title" name="title" required>
+                        {% for error in form.title.errors %}
+                        <div class="error-message" style="color: red; margin-top: 5px; font-size: 13px;">{{ error }}</div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -355,15 +358,13 @@
     }
 </style>
 
-<!-- JavaScript to handle form submission and modal -->
 <script>
     const form = document.getElementById("createVacancyForm");
     const successModal = document.getElementById("successModal");
 
     form.onsubmit = async function (event) {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault();
 
-        // Sync CKEditor data before sending the form
         for (var instance in CKEDITOR.instances) {
             CKEDITOR.instances[instance].updateElement();
         }
@@ -373,32 +374,42 @@
         try {
             const response = await fetch(form.action, {
                 method: 'POST',
-                body: formData
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
             });
 
             if (response.ok) {
-                // Show success modal
-                successModal.style.display = "flex";
-
-                // Redirect after 3 seconds
-                setTimeout(() => {
-                    redirectToVacancyList();
-                }, 3000);
+                const data = await response.json();
+                if (data.success) {
+                    successModal.style.display = "flex";
+                    setTimeout(() => {
+                        redirectToVacancyList();
+                    }, 3000);
+                }
             } else {
-                const responseData = await response.text();
-                console.error("Error response:", responseData);
-                alert("Error creating vacancy. Please check your input and try again.");
+                const responseHtml = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(responseHtml, 'text/html');
+                const newForm = doc.getElementById("createVacancyForm");
+
+                if (newForm) {
+                    form.replaceWith(newForm);
+                    CKEDITOR.replace('id_description');  // Replace with any field using CKEditor
+                }
             }
         } catch (error) {
-            console.error("Fetch error:", error);
+            console.error("Unexpected error:", error);
             alert("An unexpected error occurred. Please try again.");
         }
     };
 
     function redirectToVacancyList() {
-        window.location.href = "{% url 'vacancy_list' %}"; // Update with the correct vacancy list URL
+        window.location.href = "{% url 'vacancy_list' %}";
     }
 </script>
+
 <script src="{% static 'js/script.js' %}"></script>
 
 

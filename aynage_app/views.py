@@ -16,6 +16,9 @@ from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
+from django.db import IntegrityError
+from django.db.models import Q
+
 
 
 # Create your views here.
@@ -309,19 +312,31 @@ def admin_dashboard(request):
 # vacancy part
 @login_required(login_url='/login/')
 def vacancy_list(request):
+    query = request.GET.get('q')
     vacancies = Vacancy.objects.all().order_by('-created_at') 
-    return render(request, 'admin_page/vacancy_list.html', {'vacancies':vacancies})
+
+    if query:
+        vacancies = vacancies.filter(
+            Q(title__icontains=query) |
+            Q(description__icontains=query)
+        ).distinct()
+    return render(request, 'admin_page/vacancy_list.html', {'vacancies':vacancies, 'query': query,})
+
 
 @login_required(login_url='/login/')
 def create_vacancy(request):
     if request.method == "POST":
         form = VacancyForm(request.POST, request.FILES)
         if form.is_valid():
-            vacancy = form.save(commit=False)
-            vacancy.added_by = request.user  # ✅ Assigning the logged-in user
-            vacancy.save()
-            
-            return redirect('vacancy_list')  # Update with your vacancy list URL name
+            try:
+                vacancy = form.save(commit=False)
+                vacancy.added_by = request.user
+                vacancy.save()
+                form.save_m2m()
+                return JsonResponse({'success': True})
+            except IntegrityError:
+                form.add_error('title', 'A vacancy with this title already exists.')
+        return render(request, 'admin_page/create_vacancy.html', {'form': form}, status=400)
     else:
         form = VacancyForm()
     
@@ -356,24 +371,41 @@ def delete_vacancy(request, vacancy_id):
 # blog part
 @login_required(login_url='/login/')
 def blog_list(request):
-    blogs = Blog.objects.all().order_by('-created_at')  # Fetch blogs ordered by newest first
-    return render(request, 'admin_page/blog_list.html', {'blogs': blogs})
+    query = request.GET.get('q')
+    blogs = Blog.objects.all().order_by('-created_at')
+
+    if query:
+        blogs = blogs.filter(
+            Q(title__icontains=query) |
+            Q(description__icontains=query)
+        ).distinct()
+
+    return render(request, 'admin_page/blog_list.html', {
+        'blogs': blogs,
+        'query': query,
+    })
+
 
 @login_required(login_url='/login/')
 def create_blogs(request):
     if request.method == 'POST':
         form = BlogForm(request.POST, request.FILES)
         if form.is_valid():
-            blog = form.save(commit=False)
-            blog.added_by = request.user  # Set the user who created the blog
-            # blog.updated_by = request.user
-            form.save()
-            return redirect('blog_list')
+            try:
+                blog = form.save(commit=False)
+                blog.added_by = request.user
+                blog.save()
+                form.save_m2m()
+                return JsonResponse({'success': True})  # Tell JS that submission was successful
+            except IntegrityError as e:
+                form.add_error('title', 'A blog with this title already exists.')
         else:
             print(form.errors)
+        return render(request, 'admin_page/create_blog.html', {'form': form}, status=400)
     else:
         form = BlogForm()
     return render(request, 'admin_page/create_blog.html', {'form': form})
+
 
 @login_required(login_url='/login/')
 def update_blog(request, blog_id):

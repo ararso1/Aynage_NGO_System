@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'aynage_app',
     'ckeditor'
-
 ]
 
 MIDDLEWARE = [

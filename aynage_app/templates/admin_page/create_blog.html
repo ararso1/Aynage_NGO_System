@@ -74,7 +74,11 @@
                     <div class="form-group">
                         <label for="title">Title:</label>
                         {{ form.title }}
+                        {% for error in form.title.errors %}
+                            <div class="error-message" style="color: red; font-size: 13px; margin-top: 5px;">{{ error }}</div>
+                        {% endfor %}
                     </div>
+                
                 </div>
             </div>
 
@@ -283,52 +287,58 @@
 
 <!-- JavaScript to handle modal and redirection -->
 <script>
-    // Get form and modal elements
     const form = document.getElementById("createBlogForm");
     const successModal = document.getElementById("successModal");
 
     form.onsubmit = async function (event) {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault(); // Stop normal form submission
 
-        // Sync CKEditor data before sending the form
         for (var instance in CKEDITOR.instances) {
             CKEDITOR.instances[instance].updateElement();
         }
 
-        // Prepare form data
         const formData = new FormData(form);
 
         try {
             const response = await fetch(form.action, {
                 method: 'POST',
-                body: formData
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
             });
 
             if (response.ok) {
-                // Show success modal
-                successModal.style.display = "flex";
-
-                // Redirect after 3 seconds
-                setTimeout(() => {
-                    redirectToBlogList();
-                }, 3000);
+                const data = await response.json();
+                if (data.success) {
+                    successModal.style.display = "flex";
+                    setTimeout(() => {
+                        redirectToBlogList();
+                    }, 3000);
+                }
             } else {
-                // Handle form validation errors from Django
-                const responseData = await response.text();
-                console.error("Error response:", responseData);
-                alert("Error creating blog. Please check your input and try again.");
+                // Handle validation error response and re-render form
+                const responseHtml = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(responseHtml, 'text/html');
+                const newForm = doc.getElementById("createBlogForm");
+
+                if (newForm) {
+                    form.replaceWith(newForm);
+                    CKEDITOR.replace('id_description'); // Reinitialize CKEditor
+                }
             }
         } catch (error) {
-            console.error("Fetch error:", error);
+            console.error("Unexpected error:", error);
             alert("An unexpected error occurred. Please try again.");
         }
     };
 
-    // Redirect function
     function redirectToBlogList() {
-        window.location.href = "{% url 'blog_list' %}"; // Replace with actual URL
+        window.location.href = "{% url 'blog_list' %}";
     }
 </script>
+
 
 <script src="{% static 'js/script.js' %}"></script>
 
