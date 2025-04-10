@@ -25,23 +25,12 @@ modeSwitch.addEventListener('click', function () {
 });
 
 
-document.addEventListener('DOMContentLoaded', function() {
-  const toggleButton = document.getElementById('sidebarToggle');
-  const sidebar = document.querySelector('.sidebar'); // Target the sidebar class
-  
-  // Toggle sidebar when button is clicked
-  if (toggleButton && sidebar) {
-      toggleButton.addEventListener('click', function() {
-          sidebar.classList.toggle('collapsed');
-          
-          // Save state to localStorage
-          localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
-      });
-      
-      // Restore sidebar state on page load
-      const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
-      if (isCollapsed) {
-          sidebar.classList.add('collapsed');
-      }
-  }
-});
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.querySelector('.sidebar');
+
+    // When the toggle button is clicked, toggle the sidebar
+    sidebarToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+        document.querySelector('.app-content').classList.toggle('expanded'); // Ensure content expands on toggle
+    });
+
