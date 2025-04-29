@@ -25,3 +25,12 @@ modeSwitch.addEventListener('click', function () {
 });
 
 
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.querySelector('.sidebar');
+
+    // When the toggle button is clicked, toggle the sidebar
+    sidebarToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+        document.querySelector('.app-content').classList.toggle('expanded'); // Ensure content expands on toggle
+    });
+

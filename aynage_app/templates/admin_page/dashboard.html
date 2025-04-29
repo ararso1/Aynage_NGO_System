@@ -1,7 +1,7 @@
 {% include 'admin_page/navbar.html' %}
 {%load static%}
-
-    <style>
+<link rel="stylesheet" href="{% static 'css/style_admin.css' %}">
+<!--     <style>
 
         .dashboard {
             max-width: 1200px;
@@ -115,9 +115,14 @@
             }
         }
     </style>
-
+ -->
   <div class="app-content">
     <div class="app-content-header">
+      <div class="hamburger-menu" id="sidebarToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+        </svg>
+      </div>
       <h1 class="app-content-headerText">Welcome Ararso</h1>
       <button class="mode-switch" title="Switch Theme">
         <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
@@ -214,6 +219,17 @@
 
   </div>
 </div>
+<script>
+  
+  const sidebarToggle = document.getElementById('sidebarToggle');
+  const sidebar = document.querySelector('.sidebar');
+
+  // When the toggle button is clicked, toggle the sidebar
+  sidebarToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      document.querySelector('.app-content').classList.toggle('expanded'); // Ensure content expands on toggle
+  });
+</script>
 
 <script  src="{% static 'js/script.js' %}"></script>
 
