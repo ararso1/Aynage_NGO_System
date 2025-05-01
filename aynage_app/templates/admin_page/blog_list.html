@@ -72,6 +72,11 @@
 </style>
   <div class="app-content">
     <div class="app-content-header">
+      <div class="hamburger-menu" id="sidebarToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+        </svg>
+      </div>
       <h1 class="app-content-headerText">Blogs</h1>
       <button class="mode-switch" title="Switch Theme">
         <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
@@ -204,7 +209,7 @@
   </div>
 </div>
 
-<script  src="{% static 'js/script.js' %}"></script>
+
 <script>
   function openDeleteModal(button) {
     var blogId = button.getAttribute("data-blog-id");
@@ -230,7 +235,6 @@
     }
   }
 </script>
-
-
+<script  src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
