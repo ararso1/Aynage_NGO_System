@@ -1,0 +1,65 @@
+Forbidden (CSRF cookie not set.): /
+Forbidden (CSRF cookie not set.): /
+[UID:1350][2813391] packetLen < 0
+Forbidden (CSRF cookie not set.): /
+Forbidden (CSRF cookie not set.): /
+[UID:1350][2813391] packetLen < 0
+[UID:1350][2493623] Child process with pid: 2569342 was killed by signal: 15, core dumped: no
+[UID:1350][2493623] Child process with pid: 2569340 was killed by signal: 15, core dumped: no
+[UID:1350][679081] Child process with pid: 679251 was killed by signal: 15, core dumped: no
+Invalid HTTP_HOST header: 'mail.aynagechild.org'. You may need to add 'mail.aynagechild.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/aynagecf/virtualenv/aynage_app/3.11/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aynagecf/virtualenv/aynage_app/3.11/lib/python3.11/site-packages/django/utils/deprecation.py", line 128, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aynagecf/virtualenv/aynage_app/3.11/lib/python3.11/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/aynagecf/virtualenv/aynage_app/3.11/lib/python3.11/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'mail.aynagechild.org'. You may need to add 'mail.aynagechild.org' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'mail.aynagechild.org'. You may need to add 'mail.aynagechild.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/aynagecf/virtualenv/aynage_app/3.11/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aynagecf/virtualenv/aynage_app/3.11/lib/python3.11/site-packages/django/utils/deprecation.py", line 128, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aynagecf/virtualenv/aynage_app/3.11/lib/python3.11/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/aynagecf/virtualenv/aynage_app/3.11/lib/python3.11/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'mail.aynagechild.org'. You may need to add 'mail.aynagechild.org' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'mail.aynagechild.org'. You may need to add 'mail.aynagechild.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/aynagecf/virtualenv/aynage_app/3.11/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aynagecf/virtualenv/aynage_app/3.11/lib/python3.11/site-packages/django/utils/deprecation.py", line 128, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aynagecf/virtualenv/aynage_app/3.11/lib/python3.11/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/aynagecf/virtualenv/aynage_app/3.11/lib/python3.11/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'mail.aynagechild.org'. You may need to add 'mail.aynagechild.org' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'mail.aynagechild.org'. You may need to add 'mail.aynagechild.org' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/aynagecf/virtualenv/aynage_app/3.11/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aynagecf/virtualenv/aynage_app/3.11/lib/python3.11/site-packages/django/utils/deprecation.py", line 128, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aynagecf/virtualenv/aynage_app/3.11/lib/python3.11/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/aynagecf/virtualenv/aynage_app/3.11/lib/python3.11/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'mail.aynagechild.org'. You may need to add 'mail.aynagechild.org' to ALLOWED_HOSTS.

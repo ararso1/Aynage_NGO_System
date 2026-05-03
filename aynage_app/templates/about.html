@@ -1,0 +1,819 @@
+{% include 'components/navbar.html' %}
+{% load static %}
+<link href="{% static 'css/filter.css' %}" rel="stylesheet">
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container text-center">
+            <h1 class="display-4 text-white animated slideInDown mb-4">About Us</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item"><a class="text-white" href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a class="text-white" href="{% url 'about' %}">Pages</a></li>
+                    <li class="breadcrumb-item text-primary active" aria-current="page">About Us</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- About Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="position-relative overflow-hidden" style="width: 100%; height: 100%;">
+                        <img src="{% static 'img/photoo5.jpg' %}" alt="" 
+                             style="width: 550px; height: 600px; object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="h-100">
+                        <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">About Us</div>
+                        <h1 class="display-6 mb-5">Making a Difference for Those in Need</h1>
+                        <div class="bg-light border-bottom border-5 border-primary rounded p-4 mb-4">
+                            <p class="text-dark mb-2">Every act of kindness, no matter how small, can create a ripple of change. Together, we can build a world where no one is left behind.</p>
+                            <span class="text-primary">ACFDO, Board</span>
+                        </div>
+                    
+                        <!-- <div class="about1">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-">
+                                        <div class="about-tab">
+                                            <ul class="nav nav-pills nav-justified">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" data-toggle="pill" href="#tab-content-1">About</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="pill" href="#tab-content-2">Mission</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="pill" href="#tab-content-3">Vision</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="pill" href="#tab-content-4">Value</a>
+                                                </li>
+                                            </ul>
+                
+                                            <div class="tab-content">
+                                                <div id="tab-content-1" class="container tab-pane active">
+                                                    Aynage Child and Family Development Organization is a dedicated NGO working to uplift children and families in Ethiopia through education, health, nutrition, livelihood, and youth development programs. Based in Kibet Town, Silti Woreda, it operates across eight rural and urban kebeles. Established in 1999 and fully operational by 2001, it was formerly known as Christian Children’s Fund. Re-established in 2008 as Silti-Aynage Child and Family Development Association, it now operates under its current name with a 13-member board and 22 staff members.                                </div>
+                                                <div id="tab-content-2" class="container tab-pane fade">
+                                                    ACFDO exists  to bring about an environment where the educational, health, psychosocial and economic needs of deprived, excluded and vulnerable children are met by ensuring quality education, enhancing household livelihood and youth engagement;  and improving quality health services.
+                                                </div>
+                                                <div id="tab-content-3" class="container tab-pane fade">
+                                                    ACFDO aspires to see all deprived, excluded and vulnerable /DEV/ children become productive, confident and responsible citizens, parents and leaders of tomorrow that directly involve and contribute for the development of the country.                                
+                                                </div>
+                                                <div id="tab-content-4" class="container tab-pane fade">
+                                                    <ul class="values-list">
+                                                        <li><i class="fas fa-hands-helping"></i> Respect cultural and religious diversity</li>
+                                                        <li><i class="fas fa-comments"></i> Responsiveness to children and community voices</li>
+                                                        <li><i class="fas fa-user-shield"></i> Respect personal dignity of beneficiaries/clients</li>
+                                                        <li><i class="fas fa-eye"></i> Transparency in all services</li>
+                                                        <li><i class="fas fa-balance-scale"></i> Fair and non-discriminatory services for all</li>
+                                                        <li><i class="fas fa-users"></i> Respect stakeholders' voices and participation</li>
+                                                        <li><i class="fas fa-handshake"></i> Honor commitments to sponsors and donors</li>
+                                                    </ul>
+                                                </div>
+                                                <style>
+                                                    .values-list {
+                                                        list-style: none;
+                                                        padding-left: 0;
+                                                    }
+                
+                                                    .values-list li {
+                                                        padding: 8px 0;
+                                                        border-bottom: 1px solid #eee;
+                                                        display: flex;
+                                                        align-items: center;
+                                                    }
+                
+                                                    .values-list i {
+                                                        color: #0cdb7b;
+                                                        margin-right: 12px;
+                                                        width: 20px;
+                                                        text-align: center;
+                                                    }
+                                                </style>
+                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- About End -->
+                        <a class="btn btn-primary py-2 px-3 me-3" href="{% url 'donate' %}">
+                            Donate Now
+                            <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                        <a class="btn btn-outline-primary py-2 px-3" href="{% url 'contact' %}">
+                            Contact Us
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+    <section class="container py-5">
+        <h2 class="text-center mb-5">Meet Our Management</h2>
+    
+        <!-- Full-width Featured Card with Tabs -->
+        <div class="card team-card p-4 mb-5 border-0 shadow-sm">
+            <div class="d-flex flex-column flex-md-row align-items-start">
+                <!-- Profile Image -->
+                <div class="col-md-5 text-center text-md-start mb-3 mb-md-0">
+                    <img src="{% static 'img/team11.jpg' %}" class="img-fluid rounded" alt="Team Member">
+                </div>
+                <!-- Tabs and Content -->
+                <div class="flex-grow-1" style="padding-left: 20px;">
+                    <h4 class="mb-1">Mr. Girma Debebe</h4>
+                    <p class="text-success">Executive Director</p>
+    
+                    <!-- Nav Tabs -->
+                    <ul class="nav nav-tabs mb-3" id="profileTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="about-tab" data-bs-toggle="tab" data-bs-target="#about" type="button" role="tab">About</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="mission-tab" data-bs-toggle="tab" data-bs-target="#mission" type="button" role="tab">Mission</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="vision-tab" data-bs-toggle="tab" data-bs-target="#vision" type="button" role="tab">Vision</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="value-tab" data-bs-toggle="tab" data-bs-target="#value" type="button" role="tab">Value</button>
+                        </li>
+                    </ul>
+    
+                    <!-- Tab Content -->
+                    <div class="tab-content" id="profileTabContent">
+                        <div class="tab-pane fade show active" id="about" role="tabpanel">
+                            Aynage Child and Family Development Organization is a dedicated NGO working to uplift children and families in Ethiopia through education, health, nutrition, livelihood, and youth development programs. Based in Kibet Town, Silti Woreda, it operates across eight rural and urban kebeles. Established in 1999 and fully operational by 2001, it was formerly known as Christian Children’s Fund. Re-established in 2008 as Silti-Aynage Child and Family Development Association, it now operates under its current name with a 13-member board and 22 staff members.
+                        </div>
+                        <div class="tab-pane fade" id="mission" role="tabpanel">
+                            ACFDO exists to bring about an environment where the educational, health, psychosocial and economic needs of deprived, excluded and vulnerable children are met by ensuring quality education, enhancing household livelihood and youth engagement; and improving quality health services.
+                        </div>
+                        <div class="tab-pane fade" id="vision" role="tabpanel">
+                            ACFDO aspires to see all deprived, excluded and vulnerable /DEV/ children become productive, confident and responsible citizens, parents and leaders of tomorrow that directly involve and contribute for the development of the country.
+                        </div>
+                        <div class="tab-pane fade" id="value" role="tabpanel">
+                            <div id="" class="">
+                                <ul class="values-list">
+                                    <li><i class="fas fa-hands-helping"></i> Respect cultural and religious diversity</li>
+                                    <li><i class="fas fa-comments"></i> Responsiveness to children and community voices</li>
+                                    <li><i class="fas fa-user-shield"></i> Respect personal dignity of beneficiaries/clients</li>
+                                    <li><i class="fas fa-eye"></i> Transparency in all services</li>
+                                    <li><i class="fas fa-balance-scale"></i> Fair and non-discriminatory services for all</li>
+                                    <li><i class="fas fa-users"></i> Respect stakeholders' voices and participation</li>
+                                    <li><i class="fas fa-handshake"></i> Honor commitments to sponsors and donors</li>
+                                </ul>
+                            </div>
+                            <style>
+                                .values-list {
+                                    list-style: none;
+                                    padding-left: 0;
+                                }
+
+                                .values-list li {
+                                    padding: 8px 0;
+                                    border-bottom: 1px solid #eee;
+                                    display: flex;
+                                    align-items: center;
+                                }
+
+                                .values-list i {
+                                    color: #0cdb7b;
+                                    margin-right: 12px;
+                                    width: 20px;
+                                    text-align: center;
+                                }
+                            </style>
+                        </div>
+                    </div>
+    
+                    <!-- Social Links -->
+                    <div class="mt-3">
+                        <a href="#" class="me-3 text-primary"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="me-3 text-info"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="me-3 text-danger"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-dark"><i class="fab fa-linkedin fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="card team-card p-4 h-100 border-0 shadow-sm">
+                    <div class="row g-0 align-items-center">
+                        
+                        <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+                            <img src="{% static 'img/team12.jpg' %}" class="img-fluid rounded" alt="Team Member">
+                        </div>
+                        
+                        <div class="col-md-7" style="padding-left: 20px;">
+                            <h5 class="mb-0">Mr. Tesfaye Abera</h5>
+                            <p class="text-success mb-2">Admin and Finance Coordinator</p>
+                            <h6 class="fw-bold mt-2">Message</h6>
+                            <p>To enable ACFDO prepare accurate financial statements, deliver timely and reliable reports, implement effective internal control systems, and ensure proper supervision and management of its resources.</p>
+                            <div>
+                                <a href="#" class="me-3 text-primary"><i class="fab fa-facebook fa-lg"></i></a>
+                                <a href="#" class="me-3 text-info"><i class="fab fa-twitter fa-lg"></i></a>
+                                <a href="#" class="me-3 text-danger"><i class="fab fa-instagram fa-lg"></i></a>
+                                <a href="#" class="text-dark"><i class="fab fa-linkedin fa-lg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Repeat for next team member -->
+            <div class="col-12">
+                <div class="card team-card p-4 h-100 border-0 shadow-sm">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+                            <img src="{% static 'img/team15.jpg' %}" class="img-fluid rounded" alt="Team Member">
+                        </div>
+                        <div class="col-md-7" style="padding-left: 20px;">
+                            <h5 class="mb-0">Mr. Mesfin Tadele</h5>
+                            <p class="text-success mb-2">Sponsorship and Communication Program Head</p>
+                            <h6 class="fw-bold mt-2">Message</h6>
+                            <p>As the Sponsorship and Communication Head, I want to emphasize our shared commitment to the well-being and development of every sponsored child. It is our responsibility to ensure that all enrolled children attend school regularly, remain in good health, and are empowered to exercise their rights. In doing so, we also honor the trust and promises made by our generous sponsors. Let us work together—families, communities, and partners—to keep this promise and build a brighter future for every child.</p>
+                            <div>
+                                <a href="#" class="me-3 text-primary"><i class="fab fa-facebook fa-lg"></i></a>
+                                <a href="#" class="me-3 text-info"><i class="fab fa-twitter fa-lg"></i></a>
+                                <a href="#" class="me-3 text-danger"><i class="fab fa-instagram fa-lg"></i></a>
+                                <a href="#" class="text-dark"><i class="fab fa-linkedin fa-lg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card team-card p-4 h-100 border-0 shadow-sm">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+                            <img src="{% static 'img/team14.jpg' %}" class="img-fluid rounded" alt="Team Member">
+                        </div>
+                        <div class="col-md-7" style="padding-left: 20px;">
+                            <h5 class="mb-0">Mr. Jemal Endale</h5>
+                            <p class="text-success mb-2">Early child  Development program head</p>
+                            <h6 class="fw-bold mt-2">Message</h6>
+                            <p>At the heart of our Early Childhood Development Program lies a steadfast commitment to nurturing the foundational years of every child. We strive to ensure that all enrolled children have consistent access to quality early learning, maintain good health, and are empowered to exercise their rights. By collaborating closely with families, communities, and partners, we aim to uphold the promises made by our generous sponsors, fostering an environment where every child can thrive and reach their full potential.</p>
+                            <div>
+                                <a href="#" class="me-3 text-primary"><i class="fab fa-facebook fa-lg"></i></a>
+                                <a href="#" class="me-3 text-info"><i class="fab fa-twitter fa-lg"></i></a>
+                                <a href="#" class="me-3 text-danger"><i class="fab fa-instagram fa-lg"></i></a>
+                                <a href="#" class="text-dark"><i class="fab fa-linkedin fa-lg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card team-card p-4 h-100 border-0 shadow-sm">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+                            <img src="{% static 'img/team16.jpg' %}" class="img-fluid rounded" alt="Team Member">
+                        </div>
+                        <div class="col-md-7" style="padding-left: 20px;">
+                            <h5 class="mb-0">Mr. Biruk Habtamu</h5>
+                            <p class="text-success mb-2">Project Coordinator(Pamoja)</p>
+                            <h6 class="fw-bold mt-2">Message</h6>
+                            <p>At Pamoja Collective Action for Climate Change, we strive to create a clean and safe environment for all. We empower communities to take part in climate mitigation, adaptation, and advocacy. Our work focuses on climate governance, legislative action, and local engagement. Through collective efforts, we aim for sustainable, lasting solutions. Join us in building a healthier future for the next generation.</p>
+                            <div>
+                                <a href="#" class="me-3 text-primary"><i class="fab fa-facebook fa-lg"></i></a>
+                                <a href="#" class="me-3 text-info"><i class="fab fa-twitter fa-lg"></i></a>
+                                <a href="#" class="me-3 text-danger"><i class="fab fa-instagram fa-lg"></i></a>
+                                <a href="#" class="text-dark"><i class="fab fa-linkedin fa-lg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card team-card p-4 h-100 border-0 shadow-sm">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+                            <img src="{% static 'img/team13.jpg' %}" class="img-fluid rounded" alt="Team Member">
+                        </div>
+                        <div class="col-md-7" style="padding-left: 20px;">
+                            <h5 class="mb-0">Mr. Bahiru Yasin</h5>
+                            <p class="text-success mb-2">Youth Development Program Head</p>
+                            <h6 class="fw-bold mt-2">Message</h6>
+                            <p>At ACFDO, we see youth as the backbone of our future. In collaboration with ChildFund Ethiopia, our Youth Development Program equips young people with essential education, vocational skills, and health awareness. We also promote civic participation to nurture leadership and accountability. Through these efforts, we aim to shape confident, capable, and responsible citizens.</p>
+                            <div>
+                                <a href="#" class="me-3 text-primary"><i class="fab fa-facebook fa-lg"></i></a>
+                                <a href="#" class="me-3 text-info"><i class="fab fa-twitter fa-lg"></i></a>
+                                <a href="#" class="me-3 text-danger"><i class="fab fa-instagram fa-lg"></i></a>
+                                <a href="#" class="text-dark"><i class="fab fa-linkedin fa-lg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card team-card p-4 h-100 border-0 shadow-sm">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+                            <img src="{% static 'img/photo8.jpg' %}" class="img-fluid rounded" alt="Team Member">
+                        </div>
+                        <div class="col-md-7" style="padding-left: 20px;">
+                            <h5 class="mb-0">ACFDO Field Staff</h5>
+                            <h6 class="fw-bold mt-2">Message</h6>
+                            <p>At Aynage Child and Family Development Organization (ACFDO), our  dedication and tireless work on the ground are the backbone of our impact. As field staff, we are not just implementing programs — we are building hope, transforming lives, and strengthening communities. Our daily commitment ensures that children are educated, families are supported, and our shared vision of a brighter future becomes reality. Together, let us continue to uphold our values, honor the trust placed in us, and serve with compassion, integrity, and purpose.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            .team-card {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                background-color: #eee;                
+            }
+            .team-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Optional: stronger shadow on hover */
+            }
+        </style>
+    </section>
+    
+
+
+    <!-- Service Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">What We Do</div>
+                <h1 class="display-6 mb-5">Learn More About What We Do And Get Involved</h1>
+            </div>
+            <div class="row g-4 justify-content-center">
+                
+                <!-- Education & Youth Development -->
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-4.png' %}" style="width: 30%;" alt="">
+                        <h4 class="mb-3">Early Childhood Development</h4>
+                        <p class="mb-4">Health and nutrition programs for mothers and infants. Initiatives for cognitive development. Family support systems for nurturing care.</p>
+                        <a class="btn btn-outline-primary px-3" href="{% url 'blog_details' 'early-childhood-development-laying-the-foundation-for-a-brighter-future' %}">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Education & Youth Development -->
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-1.png' %}" alt="">
+                        <h4 class="mb-3">Basic Education Program</h4>
+                        <p class="mb-4">Quality primary education with life skills. School feeding programs to enhance learning. Safe environments with gender equality focus.</p>
+                        <a class="btn btn-outline-primary px-3" href="{% url 'blog_details' 'basic-education-program-for-every-child' %}">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Education & Youth Development -->
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-5.png' %}" style="width: 30%;" alt="">
+                        <h4 class="mb-3">Youth Development Program</h4>
+                        <p class="mb-4">Vocational training and entrepreneurship opportunities. Leadership development initiatives. Monthly pocket money support for collage or university students</p>
+                        <a class="btn btn-outline-primary px-3" href="{% url 'blog_details' 'empowering-the-next-generation-youth-development-program' %}">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Education & Youth Development -->
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-6.png' %}" style="width: 30%;" alt="">
+                        <h4 class="mb-3">Sponsor Relation and communication</h4>
+                        <p class="mb-4">Personalized child-sponsor connections. Regular progress reporting and updates.</p>
+                        <a class="btn btn-outline-primary px-3" href="{% url 'blog_details' 'building-bridges-of-hope-sponsor-relation-communication' %}">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Healthcare & Medical Aid -->
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-2.png' %}" alt="">
+                        <h4 class="mb-3">Healthcare & Medical Aid</h4>
+                        <p class="mb-4">Offering free medical services, disease prevention programs, and maternal and child healthcare support.</p>
+                        <a class="btn btn-outline-primary px-3" href="{% url 'blog_details' 'aynage-child-and-family-development-organizations-healthcare-medical-aid-program' %}">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Water, Sanitation & Hygiene (WASH) -->
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-3.png' %}" alt="">
+                        <h4 class="mb-3">Water, Sanitation & Hygiene (WASH)</h4>
+                        <p class="mb-4">Ensuring clean drinking water, sanitation facilities, and hygiene education to improve community health.</p>
+                        <a class="btn btn-outline-primary px-3" href="{% url 'blog_details' 'commitment-to-water-sanitation-hygiene-wash' %}">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Food Security & Nutrition -->
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-7.png' %}" style="width: 30%;" alt="">
+                        <h4 class="mb-3">Food Security & Nutrition</h4>
+                        <p class="mb-4">Implementing feeding programs, agricultural support, and malnutrition prevention for vulnerable populations.</p>
+                        <a class="btn btn-outline-primary px-3" href="{% url 'blog_details' 'nourishing-communities-aynages-commitment-to-food-security-nutrition' %}">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Poverty Alleviation & Livelihood Support -->
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-8.png' %}" style="width: 30%;" alt="">
+                        <h4 class="mb-3">Poverty Alleviation & Livelihood Support</h4>
+                        <p class="mb-4">Empowering communities through microfinance, job creation, and skills development initiatives.</p>
+                        <a class="btn btn-outline-primary px-3" href="{% url 'blog_details' 'aynages-work-in-livelihood-support-poverty-alleviation' %}">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Disaster Relief & Humanitarian Aid -->
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-2.png' %}" alt="">
+                        <h4 class="mb-3">Disaster Relief & Humanitarian Aid</h4>
+                        <p class="mb-4">Providing emergency response, shelter, and essential supplies to communities affected by crises and natural disasters.</p>
+                        <a class="btn btn-outline-primary px-3" href="{% url 'blog_details' 'standing-with-communities-in-crisis' %}">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Environmental Protection & Climate Action -->
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-9.png' %}" style="width: 30%;" alt="">
+                        <h4 class="mb-3">Environmental Protection & Climate Action</h4>
+                        <p class="mb-4">Promoting sustainability, conservation, and climate change awareness to protect our planet.</p>
+                        <a class="btn btn-outline-primary px-3" href="{% url 'blog_details' 'pamoja-collective-action-on-climate-change-begins-in-aynage' %}">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Housing & Shelter -->
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-8.png' %}" style="width: 30%;" alt="">
+                        <h4 class="mb-3">Support for People with Disabilities & Special Needs</h4>
+                        <p class="mb-4">Enhancing accessibility, inclusion, and healthcare support for individuals with disabilities.</p>
+                        <a class="btn btn-outline-primary px-3" href="{% url 'blog_details' 'aynages-support-for-people-with-disabilities-special-needs' %}">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Community Development & Social Welfare -->
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item bg-white text-center h-100 p-4 p-xl-5">
+                        <img class="img-fluid mb-4" src="{% static 'img/icon-8.png' %}" style="width: 30%;" alt="">
+                        <h4 class="mb-3">Community Development & Social Welfare</h4>
+                        <p class="mb-4">Supporting economic growth, empowerment programs, and initiatives to strengthen community resilience.</p>
+                        <a class="btn btn-outline-primary px-3" href="{% url 'blog_details' 'building-stronger-communities' %}">
+                            Learn More
+                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+        
+        
+        <!-- banner Start -->
+         <style>
+            .blog1 .blog-img1 {
+            width: 100%; /* Ensures it fills the parent container */
+        }
+
+        .blog1 .blog-img1 img {
+            width: 100%;
+        }
+         </style>
+        <div class="blog1">
+            <div class="container">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                    <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Our Rules</div>
+                    <h1 class="display-6 mb-5">Revised Guidelines for Child Enrollment</h1>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="blog-item">
+                            <div class="blog-text">
+                                <h3>ለህጻናት ምዝገባ ብቁነት መስፈርቶች</h3>
+                            </div>
+                            <div class="blog-img1">
+                                <img src="{% static 'img/IMG_7173.JPG' %}" alt="Image">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="blog-item">
+                            <div class="blog-text">
+                                <h3>Eligibility Criteria for Child Enrollment</h3>
+                            </div>
+                            <div class="blog-img1">
+                                <img src="{% static 'img/IMG_7174.JPG' %}" alt="Image">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="blog-item">
+                            <div class="blog-text">
+                                <h3>Interrity starts with you</h3>
+                            </div>
+                            <div class="blog-img1">
+                                <img src="{% static 'img/IMG_7175.JPG' %}" alt="Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- banner End -->
+
+
+
+        <!-- Management Structure Image -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center mx-auto mb-4 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Our Structure</div>
+                    <h1 class="display-6 mb-4">Management Structure</h1>
+                </div>
+                <div class="text-center wow fadeInUp" data-wow-delay="0.2s">
+                    <img class="img-fluid" src="{% static 'img/image.png' %}" alt="Management Structure" style="max-width: 100%; height: auto;">
+                </div>
+            </div>
+        </div>
+        <!-- Management Structure End -->
+
+    <!-- Team Start -->
+    <!--<div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Team Members</div>
+                <h1 class="display-6 mb-5">Let's Meet With Our Ordinary Soldiers</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item position-relative rounded overflow-hidden">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="{% static 'img/team4.jpg' %}" alt="">
+                        </div>
+                        <div class="team-text bg-light text-center p-4">
+                            <h5>Girma Debebe</h5>
+                            <p class="text-primary">Executive Director</p>
+                            <div class="team-social text-center">
+                                <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item position-relative rounded overflow-hidden">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="{% static 'img/team1.jpg' %}" alt="">
+                        </div>
+                        <div class="team-text bg-light text-center p-4">
+                            <h5>Tesfaye Abera</h5>
+                            <p class="text-primary">Admin and Finance coordinator</p>
+                            <div class="team-social text-center">
+                                <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="team-item position-relative rounded overflow-hidden">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="{% static 'img/team3.jpg' %}" alt="">
+                        </div>
+                        <div class="team-text bg-light text-center p-4">
+                            <h5>Biruk Habtamu</h5>
+                            <p class="text-primary">Project Coordinator(Pamoja)</p>
+                            <div class="team-social text-center">
+                                <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="team-item position-relative rounded overflow-hidden">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="{% static 'img/team2.jpg' %}" alt="">
+                        </div>
+                        <div class="team-text bg-light text-center p-4">
+                            <h5>Jemal Endale</h5>
+                            <p class="text-primary">Early child hood Development program head</p>
+                            <div class="team-social text-center">
+                                <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item position-relative rounded overflow-hidden">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="{% static 'img/team5.jpg' %}" alt="">
+                        </div>
+                        <div class="team-text bg-light text-center p-4">
+                            <h5>Mesfin Tadele</h5>
+                            <p class="text-primary">Sponsorship and  Communication Program head</p>
+                            <div class="team-social text-center">
+                                <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item position-relative rounded overflow-hidden">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="{% static 'img/photo3.png' %}" alt="">
+                        </div>
+                        <div class="team-text bg-light text-center p-4">
+                            <h5>Beharu</h5>
+                            <p class="text-primary">Sponsorship and  Communication Program head</p>
+                            <div class="team-social text-center">
+                                <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item position-relative rounded overflow-hidden">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="{% static 'img/teamm.jpg' %}" alt="">
+                        </div>
+                        <div class="team-text bg-light text-center p-4">
+                            <h5>ACFDO Top Management</h5>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="team-item position-relative rounded overflow-hidden">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="{% static 'img/photo7.jpg' %}" alt="">
+                        </div>
+                        <div class="team-text bg-light text-center p-4">
+                            <h5>ACFDO Board Members</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="team-item position-relative rounded overflow-hidden">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="{% static 'img/photo8.jpg' %}" alt="">
+                        </div>
+                        <div class="team-text bg-light text-center p-4">
+                            <h5>ACFDO Field Staff</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div> -->
+    <!-- Team End -->
+
+    <!-- Testimonial Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <div class="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3">Testimonial</div>
+                <h1 class="display-6 mb-5">Trusted By Thousands Of People And Nonprofits</h1>
+            </div>
+            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+                <div class="testimonial-item text-center">
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="{% static 'img/icons8-person-24.png' %}" style="width: 100px; height: 100px;">
+                    <div class="testimonial-text rounded text-center p-4">
+                        <p>Before joining the Aynage program, I had never been to school. Now, I can read, write, and even help my younger siblings with their homework. I dream of becoming a teacher one day, just like the ones who first taught me.</p>
+                        <h5 class="mb-1">Child Beneficiary </h5>
+                        <!-- <span class="fst-italic">Profession</span> -->
+                    </div>
+                </div>
+                <div class="testimonial-item text-center">
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="{% static 'img/icons8-person-24.png' %}" style="width: 100px; height: 100px;">
+                    <div class="testimonial-text rounded text-center p-4">
+                        <p>Through the sponsorship program, my child is attending school with all the necessary supplies. We no longer worry about affording uniforms or books. I have also learned about how to better support my children's education at home</p>
+                        <h5 class="mb-1">Child Parent</h5>
+                        <!-- <span class="fst-italic">Profession</span> -->
+                    </div>
+                </div>
+                <div class="testimonial-item text-center">
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="{% static 'img/icons8-person-24.png' %}" style="width: 100px; height: 100px;">
+                    <div class="testimonial-text rounded text-center p-4">
+                        <p>The youth development program helped me discover my talents and build confidence. Thanks to the skills training sessions, I started a small business and can now support my family. I also advocate for other young people to stay in school and pursue their dreams.</p>
+                        <h5 class="mb-1">Youth Participant</h5>
+                        <!-- <span class="fst-italic">Profession</span> -->
+                    </div>
+                </div>
+                <div class="testimonial-item text-center">
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="{% static 'img/icons8-person-24.png' %}" style="width: 100px; height: 100px;">
+                    <div class="testimonial-text rounded text-center p-4">
+                        <p>With Aynage's support, our school now has better classrooms and resources. We have seen a big drop in student absenteeism, and more girls are staying in school longer than ever before."</p>
+                        <h5 class="mb-1">School Principal</h5>
+                        <!-- <span class="fst-italic">Profession</span> -->
+                    </div>
+                </div>
+                <div class="testimonial-item text-center">
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="{% static 'img/icons8-person-24.png' %}" style="width: 100px; height: 100px;">
+                    <div class="testimonial-text rounded text-center p-4">
+                        <p>The child and environmental advocacy training changed the way we think about our surroundings. Today, we organize regular community cleanups, plant trees, and teach our children to respect the environment.</p>
+                        <h5 class="mb-1">Community Leader</h5>
+                        <!-- <span class="fst-italic">Profession</span> -->
+                    </div>
+                </div>
+                <div class="testimonial-item text-center">
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="{% static 'img/icons8-person-24.png' %}" style="width: 100px; height: 100px;">
+                    <div class="testimonial-text rounded text-center p-4">
+                        <p>The partnership with Aynage Children and Family Development Organization has strengthened our local education and child protection systems. Their work has reduced dropout rates and created a more aware, environmentally responsible youth.</p>
+                        <h5 class="mb-1">Government Official</h5>
+                        <!-- <span class="fst-italic">Profession</span> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial End -->
+
+            
+    {% include 'components/footer.html' %}
