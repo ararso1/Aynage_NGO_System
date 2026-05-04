@@ -59,6 +59,7 @@
     var progress = document.getElementById("blog-video-upload-progress");
     var progressBar = document.getElementById("blog-video-upload-progress-bar");
     var progressLabel = document.getElementById("blog-video-upload-progress-label");
+    var changelistUrl = "{% url 'admin:aynage_app_blog_changelist' %}";
     var clickedSubmitter = null;
 
     if (!form || !videoInput || !progress || !progressBar || !progressLabel) {
@@ -83,6 +84,89 @@
         });
     }
 
+    function prepareAdminFormForSubmit() {
+        if (window.CKEDITOR && window.CKEDITOR.instances) {
+            Object.keys(window.CKEDITOR.instances).forEach(function (instanceName) {
+                window.CKEDITOR.instances[instanceName].updateElement();
+            });
+        }
+
+        form.querySelectorAll(".selector-chosen select[name], select[id$='_to'][name]").forEach(function (select) {
+            if (window.SelectBox && window.SelectBox.cache && window.SelectBox.cache[select.id]) {
+                window.SelectBox.filter(select.id, "");
+            }
+
+            Array.prototype.forEach.call(select.options, function (option) {
+                option.selected = true;
+            });
+        });
+    }
+
+    function responseHasValidationErrors(responseText) {
+        var parser = new DOMParser();
+        var responseDocument = parser.parseFromString(responseText, "text/html");
+        return Boolean(responseDocument.querySelector(".errornote, .errorlist, .errors"));
+    }
+
+    function showValidationResponse(responseText) {
+        document.open();
+        document.write(responseText);
+        document.close();
+    }
+
+    function submitFormWithProgress(submitter) {
+        prepareAdminFormForSubmit();
+
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+
+        if (submitter && submitter.name) {
+            formData.append(submitter.name, submitter.value || "");
+        } else {
+            formData.append("_save", "Save");
+        }
+
+        xhr.open("POST", form.action || window.location.href, true);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+
+        setProgress(0, "Uploading video: 0%");
+        setSubmitButtonsDisabled(true);
+
+        xhr.upload.addEventListener("progress", function (uploadEvent) {
+            if (!uploadEvent.lengthComputable) {
+                setProgress(100, "Uploading video...");
+                return;
+            }
+
+            var percent = Math.round((uploadEvent.loaded / uploadEvent.total) * 100);
+            setProgress(percent, "Uploading video: " + percent + "%");
+        });
+
+        xhr.addEventListener("load", function () {
+            if (xhr.status >= 200 && xhr.status < 400) {
+                if (responseHasValidationErrors(xhr.responseText)) {
+                    progressLabel.textContent = "Upload finished, but the form has errors. Please review the highlighted fields.";
+                    showValidationResponse(xhr.responseText);
+                    return;
+                }
+
+                setProgress(100, "Upload complete. Opening blog list...");
+                window.location.assign(xhr.responseURL && xhr.responseURL !== window.location.href ? xhr.responseURL : changelistUrl);
+                return;
+            }
+
+            progressLabel.textContent = "Upload failed. Please fix any errors and try again.";
+            setSubmitButtonsDisabled(false);
+        });
+
+        xhr.addEventListener("error", function () {
+            progressLabel.textContent = "Upload failed. Please check your connection and try again.";
+            setSubmitButtonsDisabled(false);
+        });
+
+        xhr.send(formData);
+    }
+
     form.querySelectorAll('input[type="submit"], button[type="submit"]').forEach(function (button) {
         button.addEventListener("click", function () {
             clickedSubmitter = button;
@@ -104,50 +188,7 @@
         }
 
         event.preventDefault();
-
-        var submitter = event.submitter || clickedSubmitter;
-        var formData = new FormData(form);
-        var xhr = new XMLHttpRequest();
-
-        if (submitter && submitter.name) {
-            formData.append(submitter.name, submitter.value || "");
-        }
-
-        xhr.open("POST", form.action || window.location.href, true);
-        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-
-        setProgress(0, "Uploading video: 0%");
-        setSubmitButtonsDisabled(true);
-
-        xhr.upload.addEventListener("progress", function (uploadEvent) {
-            if (!uploadEvent.lengthComputable) {
-                setProgress(100, "Uploading video...");
-                return;
-            }
-
-            var percent = Math.round((uploadEvent.loaded / uploadEvent.total) * 100);
-            setProgress(percent, "Uploading video: " + percent + "%");
-        });
-
-        xhr.addEventListener("load", function () {
-            if (xhr.status >= 200 && xhr.status < 400) {
-                setProgress(100, "Upload complete. Opening saved page...");
-                document.open();
-                document.write(xhr.responseText);
-                document.close();
-                return;
-            }
-
-            progressLabel.textContent = "Upload failed. Please fix any errors and try again.";
-            setSubmitButtonsDisabled(false);
-        });
-
-        xhr.addEventListener("error", function () {
-            progressLabel.textContent = "Upload failed. Please check your connection and try again.";
-            setSubmitButtonsDisabled(false);
-        });
-
-        xhr.send(formData);
+        submitFormWithProgress(event.submitter || clickedSubmitter);
     });
 }());
 </script>
