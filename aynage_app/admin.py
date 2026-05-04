@@ -3,6 +3,7 @@ from .models import *
 # Register your models here.
 
 class BlogAdmin(admin.ModelAdmin):
+    change_form_template = 'admin/aynage_app/blog/change_form.html'
     list_display = ('title', 'slug', 'status', 'added_by', 'updated_by', 'created_at', 'updated_at')
     list_filter = ('status', 'categories')
     search_fields = ('title', 'slug', 'description')

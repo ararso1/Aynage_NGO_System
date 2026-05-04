@@ -1,0 +1,154 @@
+{% extends "admin/change_form.html" %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+    .blog-video-upload-progress {
+        display: none;
+        margin: 16px 0 8px;
+        padding: 14px;
+        max-width: 640px;
+        border: 1px solid var(--border-color, #ddd);
+        border-radius: 6px;
+        background: var(--body-bg, #fff);
+    }
+
+    .blog-video-upload-progress__track {
+        width: 100%;
+        height: 20px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: #e6e6e6;
+    }
+
+    .blog-video-upload-progress__bar {
+        width: 0%;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--primary, #417690);
+        transition: width 0.2s ease;
+    }
+
+    .blog-video-upload-progress__label {
+        margin-top: 8px;
+        font-weight: 600;
+    }
+</style>
+{% endblock %}
+
+{% block after_field_sets %}
+{{ block.super }}
+<div id="blog-video-upload-progress" class="blog-video-upload-progress" aria-live="polite">
+    <div class="blog-video-upload-progress__track">
+        <div id="blog-video-upload-progress-bar" class="blog-video-upload-progress__bar"></div>
+    </div>
+    <div id="blog-video-upload-progress-label" class="blog-video-upload-progress__label">
+        Waiting for video selection...
+    </div>
+</div>
+{% endblock %}
+
+{% block admin_change_form_document_ready %}
+{{ block.super }}
+<script>
+(function () {
+    "use strict";
+
+    var form = document.getElementById("blog_form");
+    var videoInput = document.getElementById("id_video");
+    var progress = document.getElementById("blog-video-upload-progress");
+    var progressBar = document.getElementById("blog-video-upload-progress-bar");
+    var progressLabel = document.getElementById("blog-video-upload-progress-label");
+    var clickedSubmitter = null;
+
+    if (!form || !videoInput || !progress || !progressBar || !progressLabel) {
+        return;
+    }
+
+    function setProgress(percent, message) {
+        progress.style.display = "block";
+        progressBar.style.width = percent + "%";
+        progressLabel.textContent = message;
+    }
+
+    function hideProgress() {
+        progress.style.display = "none";
+        progressBar.style.width = "0%";
+        progressLabel.textContent = "Waiting for video selection...";
+    }
+
+    function setSubmitButtonsDisabled(disabled) {
+        form.querySelectorAll('input[type="submit"], button[type="submit"]').forEach(function (button) {
+            button.disabled = disabled;
+        });
+    }
+
+    form.querySelectorAll('input[type="submit"], button[type="submit"]').forEach(function (button) {
+        button.addEventListener("click", function () {
+            clickedSubmitter = button;
+        });
+    });
+
+    videoInput.addEventListener("change", function () {
+        if (!videoInput.files || videoInput.files.length === 0) {
+            hideProgress();
+            return;
+        }
+
+        setProgress(0, "Ready to upload: " + videoInput.files[0].name);
+    });
+
+    form.addEventListener("submit", function (event) {
+        if (!videoInput.files || videoInput.files.length === 0) {
+            return;
+        }
+
+        event.preventDefault();
+
+        var submitter = event.submitter || clickedSubmitter;
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+
+        if (submitter && submitter.name) {
+            formData.append(submitter.name, submitter.value || "");
+        }
+
+        xhr.open("POST", form.action || window.location.href, true);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+
+        setProgress(0, "Uploading video: 0%");
+        setSubmitButtonsDisabled(true);
+
+        xhr.upload.addEventListener("progress", function (uploadEvent) {
+            if (!uploadEvent.lengthComputable) {
+                setProgress(100, "Uploading video...");
+                return;
+            }
+
+            var percent = Math.round((uploadEvent.loaded / uploadEvent.total) * 100);
+            setProgress(percent, "Uploading video: " + percent + "%");
+        });
+
+        xhr.addEventListener("load", function () {
+            if (xhr.status >= 200 && xhr.status < 400) {
+                setProgress(100, "Upload complete. Opening saved page...");
+                document.open();
+                document.write(xhr.responseText);
+                document.close();
+                return;
+            }
+
+            progressLabel.textContent = "Upload failed. Please fix any errors and try again.";
+            setSubmitButtonsDisabled(false);
+        });
+
+        xhr.addEventListener("error", function () {
+            progressLabel.textContent = "Upload failed. Please check your connection and try again.";
+            setSubmitButtonsDisabled(false);
+        });
+
+        xhr.send(formData);
+    });
+}());
+</script>
+{% endblock %}
